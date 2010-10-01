@@ -26,7 +26,9 @@ def register(request):
         team.store = pd['NikeStore']
         team.ip = request.META['REMOTE_ADDR']
         team.save()
-        return redirect(download,pk=team.pk)
+        team.email_pdf()
+        return redirect('http://nikecup.in/')
+        #return redirect(download,pk=team.pk)
     return render_to_response('register.html',
                               {},
                               RequestContext(request))
@@ -49,6 +51,18 @@ def download(request,pk):
     return response
 
 
+def page2(request,pk):
+    team = get_object_or_404(Team,pk=pk)
+    file_name = team.merge_pages()
+    only_file_name = file_name.split('/')[-1]
+    return redirect('/media/finalpdfs/%s'%only_file_name)
+    
+def download_pdf_hash(request,team_hash):
+    team = get_object_or_404(Team,nregnum=team_hash)
+    file_name = team.merge_pages()
+    only_file_name = file_name.split('/')[-1]
+    return redirect('/media/finalpdfs/%s'%only_file_name)
+    
 def email_pdf(request):
     
     return HttpResponse('yay')

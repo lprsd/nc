@@ -23,13 +23,3 @@ EMAIL_HOST_USER = 'lakshman3@gmail.com'
 EMAIL_HOST_PASSWORD = '123456'
 EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = 'admin@nikecup.in'
-
-
-# Absolute path to the directory that holds media.
-# Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/media/'
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash if there is a path component (optional in other cases).
-# Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = '/media/'

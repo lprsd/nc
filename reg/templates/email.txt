@@ -1,0 +1,9 @@
+Hi {{team.captain_name}},
+
+Thank you for registering for Nike Cricket.
+
+Your team's unique serial number is {{team.nregnum}}
+
+You can download the partially filled application from the following url:
+
+http://etegete.com{{team.get_pdf_url}}
