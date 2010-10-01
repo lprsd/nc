@@ -10,7 +10,9 @@ urlpatterns = patterns('',
 
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
-    url(r'register/$','reg.views.register',name='register')
+    url(r'register/$','reg.views.register',name='register'),
+    url(r'registered/(?P<pk>\d+)/$','reg.views.registered',name='registered'),
+    url(r'download/(?P<pk>\d+)/$','reg.views.download',name='download_pdf'),
 )
 
 from django.conf import settings
