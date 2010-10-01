@@ -40,6 +40,9 @@ class Team(models.Model):
     def send_pdf(self):
         pass
     
+    def create_page2_pdf(self):
+        pass
+    
     def __unicode__(self):
         return self.name
     
