@@ -15,7 +15,17 @@ import StringIO
 
 def register(request):
     if request.method == 'POST':
-        return redirect('http://nikecup.in')
+        pd = request.POST
+        team = Team()
+        team.name = pd['TeamName']
+        team.address = pd['address']
+        team.address2 = pd['address2']
+        team.phone = pd['Phone']
+        team.email = pd['email']
+        team.captain_name = pd['captain']
+        team.store = pd['NikeStore']
+        team.save()
+        return redirect(download,pk=team.pk)
     return render_to_response('register.html',
                               {},
                               RequestContext(request))

@@ -33,9 +33,11 @@ class Team(models.Model):
         return self.name
     
     def save(self,*args,**kwargs):
-        if not self.pk:
-            self.nregnum = self.pk
-        super(self,Team).save(*args,**kwargs)
+        if not self.nregnum:
+            import random
+            rn = int(str(random.random())[2:8])
+            self.nregnum = rn
+        super(Team,self).save(*args,**kwargs)
     
 class Player(models.Model):
     team = models.ForeignKey(Team)
