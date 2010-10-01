@@ -63,7 +63,7 @@ def download_pdf_hash(request,team_hash):
     only_file_name = file_name.split('/')[-1]
     return redirect('/media/finalpdfs/%s'%only_file_name)
     
-def email_pdf(request):
-    
-    return HttpResponse('yay')
+
+def teams_redirect(request):
+    return redirect('/admin/reg/team/')
     

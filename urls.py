@@ -14,7 +14,8 @@ urlpatterns = patterns('',
     url(r'registered/(?P<pk>\d+)/$','reg.views.registered',name='registered'),
     url(r'download/(?P<pk>\d+)/$','reg.views.download',name='download_pdf'),
     url(r'page2/(?P<pk>\d+)/$','reg.views.page2',name='pdf_page2'),
-    url(r'registered-pdf/(?P<team_hash>\d+)/$','reg.views.download_pdf_hash',name='download_pdf_hash')
+    url(r'registered-pdf/(?P<team_hash>\d+)/$','reg.views.download_pdf_hash',name='download_pdf_hash'),
+    url(r'teams/$','reg.views.teams_redirect',name='teams_redirect')
 )
 
 from django.conf import settings

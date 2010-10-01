@@ -103,6 +103,9 @@ class Team(models.Model):
                   from_email='noreply@nikecricket.in',
                   recipient_list=(self.email,))
         
+    def email_attach_pdf(self):
+        pass
+        
     def __unicode__(self):
         return self.name
     
