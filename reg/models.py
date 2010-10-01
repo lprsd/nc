@@ -71,7 +71,7 @@ class Team(models.Model):
     def merge_pages(self):
         from pyPdf import PdfFileReader,PdfFileWriter
         
-        pdf_file = "%s/pdfs/main.pdf"%settings.MEDIA_ROOT
+        pdf_file = "%smain.pdf"%settings.MEDIA_ROOT
         pdf_obj = PdfFileReader(open(pdf_file))
         
         values_page = PdfFileReader(open(self.create_page2_pdf())).getPage(0)
