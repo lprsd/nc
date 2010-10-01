@@ -7,5 +7,5 @@ from nutils.debug import *
 
 def register(request):
     if request.method == 'POST':
-        ipython()
+        return redirect('http://nikecup.in')
     return render_to_response('register.html',{},RequestContext(request))
