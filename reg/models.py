@@ -83,7 +83,7 @@ class Team(models.Model):
         for page in pdf_obj.pages:
             signed_pdf.addPage(page)
 
-        signed_pdf_name = "%s/finalpdfs/NikeCup%s"%(settings.MEDIA_ROOT,self.nregnum)
+        signed_pdf_name = "%s/finalpdfs/NikeCup%s.pdf"%(settings.MEDIA_ROOT,self.nregnum)
         signed_pdf_file = open(signed_pdf_name,mode='wb')
         
         signed_pdf.write(signed_pdf_file)
