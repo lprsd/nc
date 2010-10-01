@@ -29,6 +29,74 @@ page2_positions = {
     'address2': (30, 275),
     }
 
+dl_page2_positions = {
+    'phash': (59,57),    
+    }
+
+file_names = {
+    'dl_raw': "%spdf_dl_raw/pk%s.pdf",
+    'dl_done': '%spdf_dl/NikeCup%s.pdf',
+    'entered_raw': '%spdfs/pk%s.pdf',
+    'entered_done': "%sfinalpdfs/NikeCup%s.pdf",
+    'main_pdf': "%smain.pdf"
+}
+
+class PdfDownload(models.Model):
+    phash = models.IntegerField()
+    ip_address = models.IPAddressField()
+    datetime = models.DateTimeField()
+    
+    def get_dl_url(self):
+        self.merge_pdf()
+        return (file_names['dl_done']%(settings.MEDIA_URL,self.phash))
+
+    
+    def make_pdf(self):
+        sign_file_name = file_names['dl_raw']%(settings.MEDIA_ROOT,self.pk)
+        p = canvas.Canvas(sign_file_name,pagesize=A4,bottomup=0)
+        p.setFillColorRGB(0,0,0)
+        FONT_SIZE = 9
+        p.setFontSize(size=FONT_SIZE)
+        for att_name,(x_coord,y_coord) in dl_page2_positions.items():
+            att = str(getattr(self,att_name))
+            p.drawString(x_coord,y_coord+5,att)
+        p.showPage()
+        p.save()
+        #print sign_file_name
+        return sign_file_name
+    
+    def merge_pdf(self):
+        from pyPdf import PdfFileReader,PdfFileWriter
+                
+        pdf_file = file_names['main_pdf']%settings.MEDIA_ROOT
+        pdf_obj = PdfFileReader(open(pdf_file))
+        
+        values_page = PdfFileReader(open(self.make_pdf())).getPage(0)
+        
+        mergepage = pdf_obj.pages[1]
+        mergepage.mergePage(values_page)
+        
+        signed_pdf = PdfFileWriter()
+        for page in pdf_obj.pages:
+            signed_pdf.addPage(page)
+
+        signed_pdf_name = file_names['dl_done']%(settings.MEDIA_ROOT,self.phash)
+        signed_pdf_file = open(signed_pdf_name,mode='wb')
+        
+        signed_pdf.write(signed_pdf_file)
+        signed_pdf_file.close()
+        return signed_pdf_name
+
+    def save(self,*args,**kwargs):
+        if not self.phash:
+            import random
+            rn = int(str(random.random())[2:10])
+            self.phash = rn
+        if not self.pk:
+            self.datetime = datetime.now()
+        super(PdfDownload,self).save(*args,**kwargs)
+
+
 
 class Team(models.Model):
     name = models.CharField(max_length=127,verbose_name='Team Name')

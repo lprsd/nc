@@ -9,7 +9,7 @@ from django.template.loader import render_to_string
 
 from nutils.debug import *
 
-from reg.models import Team
+from reg.models import Team, PdfDownload
 #from reg.forms import TeamForm
 import StringIO
 
@@ -66,4 +66,13 @@ def download_pdf_hash(request,team_hash):
 
 def teams_redirect(request):
     return redirect('/admin/reg/team/')
-    
+
+def downloads_redirect(request):
+    return redirect('/admin/reg/pdfdownload/')
+
+
+def download_slno_only(request):
+    pd = PdfDownload()
+    pd.ip_address = request.META['REMOTE_ADDR']
+    pd.save()
+    return redirect(pd.get_dl_url())

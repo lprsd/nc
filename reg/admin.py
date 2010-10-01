@@ -1,8 +1,16 @@
 from django.contrib import admin
-from reg.models import Team, Player
+from reg.models import Team, Player, PdfDownload
 from reg.forms import TeamForm
 
-#admin.site.register(Player)
+
+class PdfDownloadsAdmin(admin.ModelAdmin):
+    list_display = ('phash','ip_address','datetime')
+    date_hierarchy = 'datetime'
+    search_fields = ('phash','ip_address')
+    readonly_fields = ('phash','ip_address','datetime')
+    
+admin.site.register(PdfDownload,PdfDownloadsAdmin)
+
 
 class TeamAdmin(admin.ModelAdmin):
     list_display = ('name', 'id', 'nregnum', 'email', 'phone', 'store')
