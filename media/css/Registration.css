@@ -1,0 +1,49 @@
+#clickHere{
+	margin-top:0px;
+	margin-left:105px;
+	margin-bottom:20px;
+	width:300px;
+}
+
+#clickHereSecond{
+	margin:20px;
+	margin-top:0px;
+	margin-left:165px;
+	width:300px;
+}
+
+#clickText{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	width:293px;
+	margin-top:10px;
+}
+
+#pointsToRemember{
+	width:849px;
+	margin-top:10px;
+	margin-left:40px;
+	
+}
+
+#payXramargin{
+	margin-left:118px;
+}
+
+#store{
+	width:849px;
+	margin-top:10px;
+	margin-left:40px;
+	height:auto;
+}
+
+#storeHeadder{
+	width:849px;
+	height:auto;
+}
+#storeAddress{
+	width:193px;
+	margin-top:20px;
+	margin-bottom:20px;
+	margin-right:19px;
+}

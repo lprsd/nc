@@ -1,10 +1,10 @@
-	
+
 a:link {
 	color:#FFF;
 	text-decoration:none;
 }
 
-a:visited { color:#FFF; } 
+a:visited { color: red; } 
 
 a:hover {
 	color:#0CF;
@@ -26,12 +26,12 @@ a:hover {
 	margin-top:0px;
 	padding:0px;
 	margin:auto;
-	width:1209px;	
+	width:1422px;	
 	height:1500px;
 	position:relative;	
 	border:none;
 	/*border:solid 1px;*/
-	background-image:url(images/background.png);
+	background-image:url(images/background.jpg);	
 	background-repeat:no-repeat;
 }
 
@@ -42,14 +42,7 @@ a:hover {
 	width:1023px;
 	height:inherit;
 	position:relative;
-	margin-left:85px;	
-}
-
-#subhedding{
-	width:927px;
-	height:60px;
-	overflow:hidden;
-	display:inline;
+	margin-left:199px;	
 }
 
 #topMenu{

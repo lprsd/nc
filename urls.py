@@ -12,3 +12,11 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     url(r'register/$','reg.views.register',name='register')
 )
+
+from django.conf import settings
+import os
+
+if settings.SERVE_MEDIA:
+    urlpatterns += patterns('', 
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': os.path.join(settings.PROJECT_ROOT,'media/')})
+    )

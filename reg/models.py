@@ -8,4 +8,4 @@ class Team(models.Model):
     
     
 class Player(models.Model):
-    team = models.ForeignKey()
+    team = models.ForeignKey(Team)
