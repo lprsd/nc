@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 from nutils.debug import *
 
 from reg.models import Team
-from reg.forms import TeamForm
+#from reg.forms import TeamForm
 import StringIO
 
 def register(request):
@@ -24,6 +24,7 @@ def register(request):
         team.email = pd['email']
         team.captain_name = pd['captain']
         team.store = pd['NikeStore']
+        team.ip = request.META['REMOTE_ADDR']
         team.save()
         return redirect(download,pk=team.pk)
     return render_to_response('register.html',
