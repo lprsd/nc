@@ -1,0 +1,7 @@
+Hi {{team.captain_name}},
+
+Thank you for registering for Nike Cricket.
+
+Your team's unique serial number is {{team.nregnum}}
+
+Please find attached, the pdf file with all the data you entered. You may fill it up and submit to the Nike store.

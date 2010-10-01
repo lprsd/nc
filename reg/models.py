@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
 from django.conf import settings
+from django.core.mail import send_mail, EmailMessage
+from django.template.loader import render_to_string
 # Create your models here.
 
 from reportlab.pdfgen import canvas
@@ -116,9 +118,6 @@ class Team(models.Model):
     modified = models.DateTimeField(verbose_name='Modified At',blank=True,null=True)
     modified_user = models.ForeignKey(User,null=True,blank=True,verbose_name='Modified by')
     
-    def send_pdf(self):
-        pass
-    
     def create_page2_pdf(self):
         sign_file_name = "%spdfs/pk%s.pdf"%(settings.MEDIA_ROOT,self.id)
         file_exists = os.path.isfile(sign_file_name)
@@ -163,8 +162,6 @@ class Team(models.Model):
         return ['download_pdf_hash',(self.nregnum,)]
     
     def email_pdf(self):
-        from django.core.mail import send_mail
-        from django.template.loader import render_to_string
         message = render_to_string('email.txt',{'team':self})
         send_mail(subject='Nike Cricket Registration',
                   message=message,
@@ -172,7 +169,14 @@ class Team(models.Model):
                   recipient_list=(self.email,))
         
     def email_attach_pdf(self):
-        pass
+        message = render_to_string('email2.txt',{'team':self})
+        email = EmailMessage(subject='Nike Cricket Registration',
+                  body=message,
+                  from_email='noreply@nikecricket.in',
+                  to=(self.email,))
+        email.attach_file(self.merge_pages())
+        return email.send()
+        
         
     def __unicode__(self):
         return self.name

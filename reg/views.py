@@ -26,8 +26,9 @@ def register(request):
         team.store = pd['NikeStore']
         team.ip = request.META['REMOTE_ADDR']
         team.save()
-        team.email_pdf()
-        return redirect('http://nikecup.in/')
+        #team.email_pdf()
+        team.email_attach_pdf()
+        return redirect('http://nikecup.in/index2.html')
         #return redirect(download,pk=team.pk)
     return render_to_response('register.html',
                               {},
