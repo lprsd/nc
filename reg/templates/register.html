@@ -1,5 +1,29 @@
 {% extends "base.html" %}
 
+{% block extra_head_base %}
+
+<script type="text/javascript">
+function MM_validateForm() { //v4.0
+  if (document.getElementById){
+    var i,p,q,nm,test,num,min,max,errors='',args=MM_validateForm.arguments;
+    for (i=0; i<(args.length-2); i+=3) { test=args[i+2]; val=document.getElementById(args[i]);
+      if (val) { nm=val.name; if ((val=val.value)!="") {
+        if (test.indexOf('isEmail')!=-1) { p=val.indexOf('@');
+          if (p<1 || p==(val.length-1)) errors+='- '+nm+' must contain an e-mail address.\n';
+        } else if (test!='R') { num = parseFloat(val);
+          if (isNaN(val)) errors+='- '+nm+' must contain a number.\n';
+          if (test.indexOf('inRange') != -1) { p=test.indexOf(':');
+            min=test.substring(8,p); max=test.substring(p+1);
+            if (num<min || max<num) errors+='- '+nm+' must contain a number between '+min+' and '+max+'.\n';
+      } } } else if (test.charAt(0) == 'R') errors += '- '+nm+' is required.\n'; }
+    } if (errors) alert('The following error(s) occurred:\n'+errors);
+    document.MM_returnValue = (errors == '');
+} }
+</script>
+
+{% endblock %}
+
+
 {% block extra_body %}
 <div id="subhedding" class="ieRightFloat">
 <img src="{{MEDIA_URL}}onlineSubheadding.jpg" width="927" height="60" alt="The knock out tournament commences November 2010"></div>
@@ -103,13 +127,7 @@ Within 5 working  days you will receive an Acknowledgement Mail confirming your 
   </tr>
   <tr>
     <td valign="middle">
-      <input name="submit" type="submit" id="submit" tabindex="11" onclick="MM_validateForm(&#39;TeamName&#39;,&#39;&#39;,&#39;R&#39;,&#39;captain&#39;,&#39;&#39;,&#39;R&#39;,&#39;Phone&#39;,&#39;&#39;,&#39;RisNum&#39;,&#39;email&#39;,&#39;&#39;,&#39;RisEmail&#39;,&#39;address&#39;,&#39;&#39;,&#39;R&#39;);return document.MM_returnValue" value="Register now and Continue to make online payment">
-    </td>
-  </tr>
-  <tr>
-    <td valign="middle">
-      <input name="submit" type="submit" id="submit" tabindex="11" onclick="MM_validateForm(&#39;TeamName&#39;,&#39;&#39;,&#39;R&#39;,&#39;captain&#39;,&#39;&#39;,&#39;R&#39;,&#39;Phone&#39;,&#39;&#39;,&#39;RisNum&#39;,&#39;email&#39;,&#39;&#39;,&#39;RisEmail&#39;,&#39;address&#39;,&#39;&#39;,&#39;R&#39;);return document.MM_returnValue" value="Register now and make offline payment">
-    </td>
+      <input name="submit" type="submit" id="submit" tabindex="11" onclick="MM_validateForm(&#39;TeamName&#39;,&#39;&#39;,&#39;R&#39;,&#39;captain&#39;,&#39;&#39;,&#39;R&#39;,&#39;Phone&#39;,&#39;&#39;,&#39;RisNum&#39;,&#39;email&#39;,&#39;&#39;,&#39;RisEmail&#39;,&#39;address&#39;,&#39;&#39;,&#39;R&#39;);return document.MM_returnValue" value="Submit"></td>
   </tr>
   <tr>
     <td valign="middle">&nbsp;</td>
