@@ -1,0 +1,6 @@
+<form action="https://www.ccavenue.com/shopzone/cc_details.jsp" method="post">
+{% for key,value in pp.items %}
+<input type="hidden" name="{{key}}" value="{{value}}">
+{% endfor %}
+<input type="submit">
+</form>

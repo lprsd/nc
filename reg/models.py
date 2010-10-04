@@ -192,3 +192,28 @@ class Team(models.Model):
     
 class Player(models.Model):
     team = models.ForeignKey(Team)
+    
+#class TeamOrder(models.Model):
+    #orderid = models.CharField(max_length=32)
+    
+    #datetime = models.DateTimeField(auto_now_add=True)
+    
+    
+class Payment(models.Model):
+    team = models.ForeignKey(Team,null=true,blank=True)
+    pdf_download = models.ForeignKey(PdfDownload,null=True,blank=True)
+    order_id = models.CharField(max_length=20)
+
+    gateway_ordernum = models.CharField(max_length=32)
+    gateway_response = models.CharField(max_length='10')
+    gateway_notes = models.TextField(blank=True,null=True)
+
+    gateway_amount = models.DecimalField()
+    gateway_nbbid = models.CharField(max_length=32)
+    gateway_formatted_values = models.TextField()
+    
+    gateway_checksum = models.CharField(max_length=20)
+    datetime = models.DateTimeField()
+
+    def __unicode__(self):
+        return "%s" %self.team
