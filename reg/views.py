@@ -88,7 +88,7 @@ def paymentpk(request,pk):
 def payment(request,team_hash,payload_only=False):
     team = get_object_or_404(Team, nregnum=team_hash)
     from zlib import adler32
-    params = { 'Order_Id' : 213123,
+    params = { 'Order_Id' : team_hash,
                'Amount' : 5,
                'Merchant_Id' : 'M_Wizcraft_12245',
                'billing_cust_country' : 'India',

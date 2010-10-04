@@ -200,7 +200,7 @@ class Player(models.Model):
     
     
 class Payment(models.Model):
-    team = models.ForeignKey(Team,null=true,blank=True)
+    team = models.ForeignKey(Team,null=True,blank=True)
     pdf_download = models.ForeignKey(PdfDownload,null=True,blank=True)
     order_id = models.CharField(max_length=20)
 
@@ -208,7 +208,7 @@ class Payment(models.Model):
     gateway_response = models.CharField(max_length='10')
     gateway_notes = models.TextField(blank=True,null=True)
 
-    gateway_amount = models.DecimalField()
+    gateway_amount = models.DecimalField(decimal_places=2,max_digits=8)
     gateway_nbbid = models.CharField(max_length=32)
     gateway_formatted_values = models.TextField()
     
