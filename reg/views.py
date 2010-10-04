@@ -137,7 +137,7 @@ from reg.models import Payment
 def payment_done(request):
     p = request.POST
     team_hash = p['Order_Id'].split(":")[0]
-    idebug()
+    #idebug()
     p_model = Payment()
     p_model.team = get_object_or_404(Team,nregnum=team_hash)
     storing_string = ''
