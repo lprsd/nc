@@ -1,0 +1,29 @@
+#thankyouSubheadding{
+	width:927px;
+	background-color:#000;
+	position:relative;
+}
+
+#stp3Holder{
+	position:absolute;
+	width:250px;
+	left: 564px;
+	top: 63px;
+}
+
+#tkHeadOptios{
+	width:927px;
+	margin-top:20px;
+}
+
+#onlinePayBtn{
+	margin-left:40px;
+	margin-top:20px;
+}
+
+#ddDetails{
+	width:280px;
+	margin-right:80px;
+	margin-top:20px;
+	margin-bottom:40px;
+}

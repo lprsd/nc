@@ -2,6 +2,7 @@
 a:link {
 	color:#FFF;
 	text-decoration:none;
+	border:none;
 }
 
 a:visited { color:#FFF; } 
@@ -31,7 +32,7 @@ a:hover {
 	position:relative;	
 	border:none;
 	/*border:solid 1px;*/
-	background-image:url(images/background.png);
+	background-image:url(../Images/background.png);
 	background-repeat:no-repeat;
 }
 
@@ -126,6 +127,11 @@ a:hover {
 	background-color:#FFF;	
 }
 
+#whiteBody a{
+	color:#06C;
+	text-decoration:none;
+}
+
 #knowMore{
 	margin:25px;
 	margin-top:15px;
@@ -144,7 +150,7 @@ a:hover {
 	position:relative;
 	width:878px;
 	height:291px;
-	background-image:url(images/tabBackground.png);
+	background-image:url(../Images/tabBackground.png);
 	background-repeat:no-repeat;
 	margin-left:25px;
 	margin-bottom:30px;
@@ -164,7 +170,7 @@ a:hover {
 #footer{
 	width:927px;
 	height:46px;
-	background-image:url(images/footerBackground.png);
+	background-image:url(../Images/footerBackground.png);
 	background-repeat:no-repeat;
 	position:relative;
 }

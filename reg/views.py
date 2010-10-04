@@ -17,6 +17,7 @@ WorkingKey = 'rj2wyllcokw0svvv1f'
 
 def register(request):
     if request.method == 'POST':
+        ipython()
         pd = request.POST
         team = Team()
         team.name = pd['TeamName']
