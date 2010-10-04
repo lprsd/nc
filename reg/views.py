@@ -9,6 +9,9 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
 from nutils.debug import *
+from zlib import adler32
+import time
+from django.conf import settings
 
 from reg.models import Team, PdfDownload
 #from reg.forms import TeamForm
@@ -29,7 +32,7 @@ def register(request):
         team.ip = request.META['REMOTE_ADDR']
         team.save()
         #team.email_pdf()
-        #team.email_attach_pdf()
+        team.email_attach_pdf()
         return redirect(payment,team.nregnum)
         #return redirect(download,pk=team.pk)
     return render_to_response('register.html',
@@ -87,15 +90,13 @@ def paymentpk(request,pk):
 
 def payment(request,team_hash,payload_only=False):
     team = get_object_or_404(Team, nregnum=team_hash)
-    from zlib import adler32
-    import time
     params = { 'Order_Id' : "%s:%s"%(team_hash,int(time.time())),
                'Amount' : 5,
                'Merchant_Id' : 'M_Wizcraft_12245',
                'billing_cust_country' : 'India',
                'billing_cust_tel' : team.phone,
                'billing_cust_email' : team.email,
-               'Redirect_Url': 'http://smackaho.st/payment-done/',
+               'Redirect_Url': settings.redirect_url,
                }
     adler_string = "%s|%s|%s|%s|%s"%(params['Merchant_Id'],
                                      params['Order_Id'],
@@ -160,7 +161,7 @@ def payment_done(request):
     if is_success:
         return redirect('http://nikecup.in/index2.html')
     else:
-        return redirect('/payment-failure/')
+        return redirect('/payment-fail/')
     
     
     
