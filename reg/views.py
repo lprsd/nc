@@ -116,7 +116,7 @@ def payment(request,team_hash,payload_only=False):
     #delivery_cust_city
     if payload_only:
         return locals()
-    return render_to_response('payment.html',
+    return render_to_response('make_payment.html',
                               {'pp':params},
                               RequestContext(request))
 
