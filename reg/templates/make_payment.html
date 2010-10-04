@@ -29,7 +29,15 @@ clearly showing date of birth and thereby evidencing proof of age(Passport, Driv
 </div>
 <div class="ieLeftFloat" id="tkHeadOptios"><img src="{{MEDIA_URL}}images/thankYouPaymentOptionHead.jpg" width="929" height="62" alt="Online and Offline payment" /></div>
 <div id="onlinePayBtn" class="ieLeftFloat">
-<a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('onlinePay','','{{MEDIA_URL}}images/payonLineOver.png',1)"><img src="{{MEDIA_URL}}images/payonLine.png" alt="Click Here To Pay Online" name="onlinePay" width="343" height="49" border="0" id="onlinePay" /></a></div>
+<form name="onlinepay_form" action="https://www.ccavenue.com/shopzone/cc_details.jsp" method="post">
+<a href="javascript:document.onlinepay_form.submit();" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('onlinePay','','{{MEDIA_URL}}images/payonLineOver.png',1)">
+{% for key,value in pp.items %}
+<input type="hidden" name="{{key}}" value="{{value}}">
+{% endfor %}
+<img src="{{MEDIA_URL}}images/payonLine.png" alt="Click Here To Pay Online" name="onlinePay" width="343" height="49" border="0" id="onlinePay" />
+</a>
+</form>
+</div>
 
 <div id="ddDetails" class="ieRightFloat">
 <span class="pSubstitute">

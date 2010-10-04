@@ -157,7 +157,7 @@ def payment_done(request):
         
     is_success = p['AuthDesc'] == 'Y'
     if is_success:
-        return redirect('/payment-thanks/')
+        return redirect('http://nikecup.in/index2.html')
     else:
         return redirect('/payment-failure/')
     
