@@ -103,11 +103,11 @@ class PdfDownload(models.Model):
 class Team(models.Model):
     name = models.CharField(max_length=127,verbose_name='Team Name')
     address = models.CharField(max_length=127)
-    address2 = models.CharField(max_length=127)
-    phone = models.CharField(max_length=127)
-    email = models.EmailField(max_length=127)
+    address2 = models.CharField(max_length=127,blank=True,null=True)
+    phone = models.CharField(max_length=127,blank=True,null=True)
+    email = models.EmailField(max_length=127,blank=True,null=True)
     store = models.CharField(choices=stores,max_length=10)
-    captain_name = models.CharField(max_length=127)
+    captain_name = models.CharField(max_length=127,blank=True,null=True)
     
     nregnum = models.IntegerField(verbose_name="Nikecup Reg. No.")
     
@@ -204,7 +204,7 @@ class Payment(models.Model):
     pdf_download = models.ForeignKey(PdfDownload,null=True,blank=True)
     order_id = models.CharField(max_length=20)
 
-    gateway_ordernum = models.CharField(max_length=32)
+    gateway_ordernum = models.CharField(max_length=100)
     gateway_response = models.CharField(max_length='10')
     gateway_notes = models.TextField(blank=True,null=True)
 

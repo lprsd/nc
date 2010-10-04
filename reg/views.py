@@ -29,8 +29,8 @@ def register(request):
         team.ip = request.META['REMOTE_ADDR']
         team.save()
         #team.email_pdf()
-        team.email_attach_pdf()
-        return redirect('http://nikecup.in/index2.html')
+        #team.email_attach_pdf()
+        return redirect(payment,team.nregnum)
         #return redirect(download,pk=team.pk)
     return render_to_response('register.html',
                               {},
@@ -88,7 +88,8 @@ def paymentpk(request,pk):
 def payment(request,team_hash,payload_only=False):
     team = get_object_or_404(Team, nregnum=team_hash)
     from zlib import adler32
-    params = { 'Order_Id' : team_hash,
+    import time
+    params = { 'Order_Id' : "%s:%s"%(team_hash,int(time.time())),
                'Amount' : 5,
                'Merchant_Id' : 'M_Wizcraft_12245',
                'billing_cust_country' : 'India',
@@ -134,13 +135,13 @@ from reg.models import Payment
 @csrf_exempt
 def payment_done(request):
     p = request.POST
-    team_hash = p['Order_Id']
-
+    team_hash = p['Order_Id'].split(":")[0]
+    idebug()
     p_model = Payment()
     p_model.team = get_object_or_404(Team,nregnum=team_hash)
     storing_string = ''
     for k,v in p.items():
-        storing_string= "%s : %v \n%s"%(k,v,storing_string)
+        storing_string= "%s : %s \n%s"%(k,v,storing_string)
     p_model.gateway_formatted_values = storing_string
     
     p_model.gateway_ordernum = team_hash

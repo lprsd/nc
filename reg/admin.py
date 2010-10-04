@@ -1,5 +1,5 @@
 from django.contrib import admin
-from reg.models import Team, Player, PdfDownload
+from reg.models import Team, Player, PdfDownload, Payment
 from reg.forms import TeamForm
 
 
@@ -10,7 +10,7 @@ class PdfDownloadsAdmin(admin.ModelAdmin):
     readonly_fields = ('phash','ip_address','datetime')
     
 admin.site.register(PdfDownload,PdfDownloadsAdmin)
-
+admin.site.register(Payment)
 
 class TeamAdmin(admin.ModelAdmin):
     list_display = ('name', 'id', 'nregnum', 'email', 'phone', 'store')
