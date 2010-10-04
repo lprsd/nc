@@ -25,10 +25,14 @@
 	margin-bottom:10px;
 }
 
+#stepsContent1 a{
+	color:#06C;
+}
+
 #stepHeadding{
 	width:268px;
 	height:28px;
-	background-image:url(images/step.jpg);
+	background-image:url(../Images/step.jpg);
 	background-repeat:no-repeat;
 	line-height:28px;
 	margin-bottom:10px;
@@ -55,4 +59,12 @@
 	margin-left:40px;
 	width:849px;
 	margin-bottom:10px;
+}
+
+#downloadPDTBtn{
+	margin-top:20px;
+	margin-bottom:20px;
+	margin-left:40px;
+	width:410px;
+	height:43px;
 }

@@ -1,0 +1,61 @@
+#faqText{
+	width:849px;
+	margin:10px;
+	margin-left:40px;
+	margin-right:40px;
+}
+
+#faqText ul li{
+	/*list-style-type:none;*/
+	margin-top:5px;
+}
+
+#faqQ{
+	font-family:Arial, Helvetica, sans-serif;
+	color: #000;
+	font-style:normal;
+	font-size:12px;
+	font-weight:bold;
+	margin-left:20px;
+}
+#faqQdoubleDig{
+	font-family:Arial, Helvetica, sans-serif;
+	color: #000;
+	font-style:normal;
+	font-size:12px;
+	font-weight:bold;
+	margin-left:16px;
+}
+#faqA{
+	font-family:Arial, Helvetica, sans-serif;
+	color: #000;
+	font-style:normal;
+	font-size:12px;
+	font-weight:normal;
+	margin-left:29px;
+}
+
+#faqALineBreak{
+	font-family:Arial, Helvetica, sans-serif;
+	color: #000;
+	font-style:normal;
+	font-size:12px;
+	font-weight:normal;
+	margin-left:40px;
+}
+
+#faqText a{
+	color:#06C;
+}
+
+#faqTitles{
+	width:849px;
+	margin-top:20px;
+	margin-left:40px;
+}
+
+#topArrow{
+	width:849px;
+	height:35px;
+	text-align:right;
+}

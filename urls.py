@@ -35,5 +35,6 @@ import os
 
 if settings.SERVE_MEDIA:
     urlpatterns += patterns('', 
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': os.path.join(settings.PROJECT_ROOT,'media/')})
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': os.path.join(settings.PROJECT_ROOT,'media/'),
+                                                               'show_indexes': True})
     )

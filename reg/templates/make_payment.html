@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block extra_head_base %}
+<script type="text/javascript">
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+</script>
+<link href="{{MEDIA_URL}}css/thankYou.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block extra_body %}
+<div id="whiteBody" class="ieRightFloat">
+<div class="ieLeftFloat" id="thankyouSubheadding"><img src="{{MEDIA_URL}}images/thankYouSubheadding.jpg" width="927" height="205" alt="Thank You For Registering" />
+<div id="stp3Holder"><span class="pSubstituteRevers">All teams' participants will have to submit a copy of their original photo id (College Id,Passport, Driving License, Voter Id, etc.) and a copy of a document
+clearly showing date of birth and thereby evidencing proof of age(Passport, Driving License, Voter ID Card, College ID Card, School Leaving Certificate, School marksheet, etc.) along with this Registration Form.</span>
+</div>
+</div>
+<div class="ieLeftFloat" id="tkHeadOptios"><img src="{{MEDIA_URL}}images/thankYouPaymentOptionHead.jpg" width="929" height="62" alt="Online and Offline payment" /></div>
+<div id="onlinePayBtn" class="ieLeftFloat">
+<a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('onlinePay','','{{MEDIA_URL}}images/payonLineOver.png',1)"><img src="{{MEDIA_URL}}images/payonLine.png" alt="Click Here To Pay Online" name="onlinePay" width="343" height="49" border="0" id="onlinePay" /></a></div>
+
+<div id="ddDetails" class="ieRightFloat">
+<span class="pSubstitute">
+Courier  a DD in favour of <br />
+"Wizcraft International Entertainment Pvt Ltd"<br /> 
+to the following address <br /><br />
+Mr.Dhanraj Gehi, <br />
+Wizcraft International Entertainment Pvt Ltd,<br /> Satyadev Plaza, 5th Floor,<br /> 
+Behind Bhagwati House, Fun Republic Lane,<br /> Off. New Link Road, Andheri (W),<br /> 
+Mumbai – 53 OR<br /><br />
+
+Make Cash payments at selected Nike Outlets
+</span>
+</div>
+
+</div>
+{% endblock %}
