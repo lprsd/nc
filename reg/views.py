@@ -96,7 +96,7 @@ def payment(request,team_hash,payload_only=False):
                'billing_cust_country' : 'India',
                'billing_cust_tel' : team.phone,
                'billing_cust_email' : team.email,
-               'Redirect_Url': settings.redirect_url,
+               'Redirect_Url': settings.REDIRECT_URL,
                }
     adler_string = "%s|%s|%s|%s|%s"%(params['Merchant_Id'],
                                      params['Order_Id'],
