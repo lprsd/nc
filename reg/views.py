@@ -32,7 +32,7 @@ def register(request):
         team.ip = request.META['REMOTE_ADDR']
         team.save()
         #team.email_pdf()
-        team.email_attach_pdf()
+        team.send_html_email()
         return redirect(payment,team.nregnum)
         #return redirect(download,pk=team.pk)
     return render_to_response('register.html',

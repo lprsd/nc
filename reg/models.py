@@ -40,7 +40,7 @@ file_names = {
     'dl_done': '%spdf_dl/NikeCup%s.pdf',
     'entered_raw': '%spdfs/pk%s.pdf',
     'entered_done': "%sfinalpdfs/NikeCup%s.pdf",
-    'main_pdf': "%smain.pdf"
+    'main_pdf': "%srf2.pdf"
 }
 
 class PdfDownload(models.Model):
@@ -75,7 +75,7 @@ class PdfDownload(models.Model):
         
         values_page = PdfFileReader(open(self.make_pdf())).getPage(0)
         
-        mergepage = pdf_obj.pages[1]
+        mergepage = pdf_obj.pages[0]
         mergepage.mergePage(values_page)
         
         signed_pdf = PdfFileWriter()
@@ -138,12 +138,18 @@ class Team(models.Model):
     def merge_pages(self):
         from pyPdf import PdfFileReader,PdfFileWriter
         
-        pdf_file = "%smain.pdf"%settings.MEDIA_ROOT
+        pdf_file = "%srf2.pdf"%settings.MEDIA_ROOT
         pdf_obj = PdfFileReader(open(pdf_file))
+        
+        #This is a bug in pyPdf. It detects some files as encrypted, even if they are not. It can be circumvented by asking it to decrypt with an empty string.
+        if pdf_obj.isEncrypted:
+            pdf_obj.decrypt('')
+        
+
         
         values_page = PdfFileReader(open(self.create_page2_pdf())).getPage(0)
         
-        mergepage = pdf_obj.pages[1]
+        mergepage = pdf_obj.pages[0]
         mergepage.mergePage(values_page)
         
         signed_pdf = PdfFileWriter()
@@ -177,7 +183,17 @@ class Team(models.Model):
         email.attach_file(self.merge_pages())
         return email.send()
         
+    def send_html_email(self):
+        message = render_to_string('ack_mail.html',{'team':self})
+        email = EmailMessage(subject='Nike Cricket Registration',
+                             body=message,
+                             from_email='noreply@nikecricket.in',
+                             to=(self.email,))
+        email.content_subtype = "html"  # Main content is now text/html
+        email.attach_file(self.merge_pages())
+        return email.send()
         
+    
     def __unicode__(self):
         return self.name
     
