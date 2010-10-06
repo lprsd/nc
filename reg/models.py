@@ -141,9 +141,9 @@ class Team(models.Model):
         pdf_file = "%srf2.pdf"%settings.MEDIA_ROOT
         pdf_obj = PdfFileReader(open(pdf_file))
         
-        #This is a bug in pyPdf. It detects some files as encrypted, even if they are not. It can be circumvented by asking it to decrypt with an empty string.
-        if pdf_obj.isEncrypted:
-            pdf_obj.decrypt('')
+        ##This is a bug in pyPdf. It detects some files as encrypted, even if they are not. It can be circumvented by asking it to decrypt with an empty string.
+        #if pdf_obj.isEncrypted:
+            #pdf_obj.decrypt('')
         
 
         
