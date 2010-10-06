@@ -91,7 +91,7 @@ def paymentpk(request,pk):
 def payment(request,team_hash,payload_only=False):
     team = get_object_or_404(Team, nregnum=team_hash)
     params = { 'Order_Id' : "%s:%s"%(team_hash,int(time.time())),
-               'Amount' : 5,
+               'Amount' : 500,
                'Merchant_Id' : 'M_Wizcraft_12245',
                'billing_cust_country' : 'India',
                'billing_cust_tel' : team.phone,
