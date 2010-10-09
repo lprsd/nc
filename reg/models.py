@@ -98,7 +98,9 @@ class PdfDownload(models.Model):
             self.datetime = datetime.now()
         super(PdfDownload,self).save(*args,**kwargs)
 
-
+status = ((1,'Approved'),
+          (2,'Rejected'),
+          )
 
 class Team(models.Model):
     name = models.CharField(max_length=127,verbose_name='Team Name')
@@ -117,6 +119,14 @@ class Team(models.Model):
     
     modified = models.DateTimeField(verbose_name='Modified At',blank=True,null=True)
     modified_user = models.ForeignKey(User,null=True,blank=True,verbose_name='Modified by')
+    
+    payment_done = models.BooleanField(default=False)
+    payment_detail = models.TextField()
+    
+    status = models.PositiveSmallIntegerField(choices=status,blank=True,null=True)
+    
+    def players(self):
+        return self.player_set.count()
     
     def create_page2_pdf(self):
         sign_file_name = "%spdfs/pk%s.pdf"%(settings.MEDIA_ROOT,self.id)
@@ -208,6 +218,17 @@ class Team(models.Model):
     
 class Player(models.Model):
     team = models.ForeignKey(Team)
+    
+    name = models.CharField(max_length=100),
+    dob = models.DateField()
+    address = models.TextField()
+    mobile_phone = models.IntegerField()
+    land_phone = models.CharField(max_length=10)
+    emergency_contact = models.CharField(max_length=100)
+    email = models.EmailField()
+    ailments = models.TextField()
+    receive_updates = models.BooleanField(default=True)
+    
     
 #class TeamOrder(models.Model):
     #orderid = models.CharField(max_length=32)

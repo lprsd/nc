@@ -12,24 +12,32 @@ class PdfDownloadsAdmin(admin.ModelAdmin):
 admin.site.register(PdfDownload,PdfDownloadsAdmin)
 admin.site.register(Payment)
 
+class PlayerInline(admin.StackedInline):
+    model = Player
+
+class PaymentInline(admin.TabularInline):
+    model = Payment
+    
+
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ('name', 'id', 'nregnum', 'email', 'phone', 'store')
+    list_display = ('name', 'datetime', 'nregnum', 'email', 'phone', 'store', 'payment_done', 'payment_detail', 'status', 'players')
     date_hierarchy = 'datetime'
     search_fields = ('nregnum','name','phone','email')
     readonly_fields = ('datetime','ip','modified','modified_user','nregnum')
     fieldsets = (
         (None, {
-            'fields': ('name', 'nregnum', 'captain_name')
+            'fields': ('name', 'nregnum', 'status')
         }),
         ('Contact details', {
-            'fields': (('address','address2'),'phone','email')
+            'classes': ('collapse',),
+            'fields': ('captain_name',('address','address2'),'phone','email')
         }),
         ('Meta Details', {
             'classes': ('collapse',),
             'fields': ('ip','datetime','modified','modified_user')
         }),
     )
-    
+    inlines = [PlayerInline]
     #filter_horizontal = ('store',)
     
 admin.site.register(Team,TeamAdmin)
