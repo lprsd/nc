@@ -15,7 +15,7 @@ class NewTeamForm(forms.Form):
     address2 = forms.CharField(max_length=50, label='', required=False)
     city = forms.CharField()
     pincode = forms.IntegerField()
-    Phone = forms.IntegerField(label='Phone Number', help_text='Enter 10 digit mobile number without spaces')
+    phone = forms.IntegerField(label='Phone Number', help_text='Enter 10 digit mobile number without spaces')
     email = forms.EmailField()
     NikeStore = forms.ChoiceField(choices=stores,widget=forms.RadioSelect,label='Preferred location', help_text='In the event of your team being selected, please select preferred location to collect team docket (select ONE only):')
     
@@ -28,11 +28,16 @@ class NewTeamForm(forms.Form):
         raise forms.ValidationError('This Pincode is invalid')
         
     def clean_phone(self):
+        p = self.cleaned_data['phone']
         min_value=8000000000
         max_value=9999999999
-        if min_value < p < max_value:
-            return p
-        raise forms.ValidationError('This is not a valid mobile phone number')
+        if not min_value < p < max_value:
+            raise forms.ValidationError('This is not a valid mobile phone number')
+        phone_num = Team.objects.filter(phone=p).count()
+        if phone_num:
+            raise forms.ValidationError('There is a nikecup team registered already, with this phone number.')
+        return p
+
     
     def clean_email(self):
         e = self.cleaned_data['email']
