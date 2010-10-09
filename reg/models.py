@@ -16,10 +16,10 @@ pixel = 0.72 # point = 0.75* pixel
 MAX_Y_POINT_A4 = 841.88
 
 
-stores = (('LP', 'Lower Parel'),
-          ('LR', 'Linking Road'),
-          ('MU', 'Mulund (W)'),
-          ('WO', 'Worli'))
+stores = (('LP', 'Nike store, Lower Parel'),
+          ('LR', 'Nike store, Linking Road'),
+          ('MU', 'Nike store, Mulund (W)'),
+          ('WO', 'Nike store, Worli'))
 
 page2_positions = {
     'nregnum': (59,57),

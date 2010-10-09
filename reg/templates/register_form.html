@@ -1,0 +1,10 @@
+{% extends "register.html" %}
+{% block form_table %}
+{% if form.errors %}
+<div id="mainErrorMessage" class="ieLeftFloat">Please correct the errors below!</div> <br/>
+{% endif %}
+<table>
+{{form}}
+<tr> <td><input type="submit" value="Register Team"> </td></tr>
+</table>
+{% endblock %}

@@ -75,8 +75,10 @@ Within 5 working  days you will receive an Acknowledgement Mail confirming your 
 
 <div id="line" class="ieLeftFloat"></div>
 <div id="formDiv" class="ieLeftFloat"><span class="Heading">Please fill in complete details:</span><br /><br />
-<span class="pSubstitute"><form action="." method="post">
+<span class="pSubstitute">
+<form action="." method="post">
 {% csrf_token %}
+{% block form_table %}
 <table width="900" border="0" cellpadding="0" cellspacing="0">
 <tbody>
   <tr >
@@ -129,7 +131,7 @@ Within 5 working  days you will receive an Acknowledgement Mail confirming your 
   </tr>
   </tbody>
 </table>
-
+{% endblock %}
 </form>
 </span>
 </div>

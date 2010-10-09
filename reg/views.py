@@ -14,29 +14,21 @@ import time
 from django.conf import settings
 
 from reg.models import Team, PdfDownload
-#from reg.forms import TeamForm
+from reg.forms import TeamForm, NewTeamForm
 import StringIO
 WorkingKey = 'rj2wyllcokw0svvv1f'
 
 def register(request):
-    if request.method == 'POST':
-        pd = request.POST
-        team = Team()
-        team.name = pd['TeamName']
-        team.address = pd['address']
-        team.address2 = pd['address2']
-        team.phone = pd['Phone']
-        team.email = pd['email']
-        team.captain_name = pd['captain']
-        team.store = pd['NikeStore']
+    form  = NewTeamForm(request.POST or None)
+    if form.is_valid():
+        team = form.save()
         team.ip = request.META['REMOTE_ADDR']
         team.save()
-        #team.email_pdf()
         team.send_html_email()
         return redirect(payment,team.nregnum)
         #return redirect(download,pk=team.pk)
-    return render_to_response('register.html',
-                              {},
+    return render_to_response('register_form.html',
+                              {'form':form},
                               RequestContext(request))
 
 def registered(request,pk,asstring=False):

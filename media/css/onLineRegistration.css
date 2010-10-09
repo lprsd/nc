@@ -68,3 +68,37 @@
 	width:410px;
 	height:43px;
 }
+
+#city
+{
+	margin-left:100px;
+	margin-top:8px;
+}
+
+#mainErrorMessage
+{
+	width:849px;
+	height:inherit;
+	background-color:#F00;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#FFF;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+#formHolderDiv{
+	position:relative;
+	width:849px;
+	display:inline;
+	overflow:hidden;
+}
+
+.errorlist li {
+    background-color: red;
+    color: white;
+    display: block;
+    /*font-size: 10px;*/
+    margin: 0 0 3px;
+    padding: 4px 5px;
+}
