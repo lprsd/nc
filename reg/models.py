@@ -226,7 +226,7 @@ class Player(models.Model):
     land_phone = models.CharField(max_length=10)
     emergency_contact = models.CharField(max_length=100)
     email = models.EmailField()
-    ailments = models.TextField()
+    ailments = models.TextField(blank=True,null=True)
     receive_updates = models.BooleanField(default=True)
     
     
