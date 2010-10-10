@@ -52,7 +52,7 @@ class NewTeamForm(forms.Form):
         team.name = pd['TeamName']
         team.address = pd['address']
         team.address2 = pd['address2']
-        team.phone = pd['Phone']
+        team.phone = pd['phone']
         team.email = pd['email']
         team.captain_name = pd['captain']
         team.store = pd['NikeStore']
