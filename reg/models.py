@@ -215,7 +215,10 @@ class Team(models.Model):
         if not self.pk:
             self.datetime = datetime.now()
         super(Team,self).save(*args,**kwargs)
-    
+
+from form_utils.fields import ClearableImageField        
+        
+        
 class Player(models.Model):
     team = models.ForeignKey(Team)
     
@@ -228,7 +231,7 @@ class Player(models.Model):
     email = models.EmailField()
     ailments = models.TextField(blank=True,null=True)
     receive_updates = models.BooleanField(default=True)
-    
+    #photo = ClearableImageField()
     
 #class TeamOrder(models.Model):
     #orderid = models.CharField(max_length=32)

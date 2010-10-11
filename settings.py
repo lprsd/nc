@@ -88,7 +88,8 @@ INSTALLED_APPS = (
     'nutils',
     'reg',
     'django_extensions',
-    'south'
+    'south',
+    'form_utils',
 )
 
 from local_settings import *
