@@ -225,6 +225,8 @@ class Player(models.Model):
     name = models.CharField(max_length=100)
     dob = models.DateField()
     address = models.TextField()
+    city = models.CharField(max_length=50)
+    pincode = models.IntegerField()
     mobile_phone = models.IntegerField()
     land_phone = models.CharField(max_length=10)
     emergency_contact = models.CharField(max_length=100)
@@ -232,6 +234,7 @@ class Player(models.Model):
     ailments = models.TextField(blank=True,null=True)
     receive_updates = models.BooleanField(default=True)
     photo = models.ImageField(blank=True,null=True,upload_to='photo')
+    
     
 #class TeamOrder(models.Model):
     #orderid = models.CharField(max_length=32)
