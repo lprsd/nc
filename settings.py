@@ -62,6 +62,8 @@ MIDDLEWARE_CLASSES = (
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = os.path.join(PROJECT_ROOT,'media/')
 
+PHOTO_FOLDER = os.path.join(MEDIA_ROOT,'photo/')
+
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"

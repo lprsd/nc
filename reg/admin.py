@@ -1,7 +1,11 @@
 from django.contrib import admin
 from reg.models import Team, Player, PdfDownload, Payment
 from reg.forms import TeamForm
-
+from django import forms
+from form_utils.fields import ClearableImageField
+from form_utils.forms import BetterModelForm
+from form_utils.widgets import ImageWidget, AutoResizeTextarea, InlineAutoResizeTextarea
+from django.db import models
 
 class PdfDownloadsAdmin(admin.ModelAdmin):
     list_display = ('phash','ip_address','datetime')
@@ -12,13 +16,37 @@ class PdfDownloadsAdmin(admin.ModelAdmin):
 admin.site.register(PdfDownload,PdfDownloadsAdmin)
 admin.site.register(Payment)
 
-class PlayerInline(admin.TabularInline):
-    model = Player
+from nutils.debug import ipython
 
-class PaymentInline(admin.TabularInline):
-    model = Payment
+class PlayerAdminForm(BetterModelForm):
     
+    address = forms.CharField(widget=InlineAutoResizeTextarea)
+    ailments = forms.CharField(required=False)
+    
+    class Meta:
+        model = Player
+        fieldsets = (
+            (None, {'fields': ('name', 'photo')}),
+            ('ABCD', {'fields': ('address', 'ailments')})
+        )
+        
+        
+from django.contrib.admin.options import InlineModelAdmin
 
+class PlayerInline(admin.StackedInline):
+    model = Player
+    form = PlayerAdminForm
+    formfield_overrides = { models.ImageField: {'widget': ImageWidget}}
+    #template = 'admin_inline.html'
+    
+class PaymentInline(admin.StackedInline):
+    model = Payment
+    fieldsets = (
+        (None, {'fields': ('name', 'photo')}),
+        ('ABCD', {'fields': ('address', 'ailments')})
+    )
+    
+    
 class TeamAdmin(admin.ModelAdmin):
     list_display = ('name', 'datetime', 'nregnum', 'email', 'phone', 'store', 'payment_done', 'payment_detail', 'status', 'players')
     date_hierarchy = 'datetime'

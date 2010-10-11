@@ -217,12 +217,12 @@ class Team(models.Model):
         super(Team,self).save(*args,**kwargs)
 
 from form_utils.fields import ClearableImageField        
-        
-        
+from django.conf import settings
+
 class Player(models.Model):
     team = models.ForeignKey(Team)
     
-    name = models.CharField(max_length=100),
+    name = models.CharField(max_length=100)
     dob = models.DateField()
     address = models.TextField()
     mobile_phone = models.IntegerField()
@@ -231,7 +231,7 @@ class Player(models.Model):
     email = models.EmailField()
     ailments = models.TextField(blank=True,null=True)
     receive_updates = models.BooleanField(default=True)
-    #photo = ClearableImageField()
+    photo = models.ImageField(blank=True,null=True,upload_to='photo')
     
 #class TeamOrder(models.Model):
     #orderid = models.CharField(max_length=32)
