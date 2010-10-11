@@ -18,28 +18,28 @@ admin.site.register(Payment)
 
 from nutils.debug import ipython
 
-class PlayerAdminForm(BetterModelForm):
+class PlayerAdminForm(forms.ModelForm):
     
     address = forms.CharField(widget=InlineAutoResizeTextarea)
     ailments = forms.CharField(required=False)
     
     class Meta:
         model = Player
-        fieldsets = (
-            (None, {'fields': ('name', 'photo')}),
-            ('ABCD', {'fields': ('address', 'ailments')})
-        )
+        #fieldsets = (
+            #(None, {'fields': ('name', 'photo')}),
+            #('ABCD', {'fields': ('address', 'ailments')})
+        #)
         
         
 from django.contrib.admin.options import InlineModelAdmin
 
-class PlayerInline(admin.StackedInline):
+class PlayerInline(admin.TabularInline):
     model = Player
     form = PlayerAdminForm
     formfield_overrides = { models.ImageField: {'widget': ImageWidget}}
     #template = 'admin_inline.html'
     
-class PaymentInline(admin.StackedInline):
+class PaymentInline(admin.TabularInline):
     model = Payment
     fieldsets = (
         (None, {'fields': ('name', 'photo')}),
