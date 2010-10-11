@@ -23,7 +23,8 @@ class PlayerAdminForm(forms.ModelForm):
     
     address = forms.CharField(widget=InlineAutoResizeTextarea)
     ailments = forms.CharField(required=False)
-    
+    mobile_phone = forms.CharField()
+    land_phone = forms.CharField()
     class Meta:
         model = Player
         #fieldsets = (
@@ -43,7 +44,9 @@ class PlayerInline(admin.TabularInline):
     fieldsets = (
             ('', {'fields': ('name', 'photo', 'dob', 'email')}),
             ('', {'fields': ('address', 'mobile_phone', 'land_phone')}),
-            ('', {'fields': ('emergency_contact', 'receive_updates')})
+            ('', {'fields': ('city','pincode')}),
+            ('', {'fields': ('emergency_contact',)}),
+            ('', {'fields': ('receive_updates',)}),
         )
     
 class PaymentInline(admin.TabularInline):
