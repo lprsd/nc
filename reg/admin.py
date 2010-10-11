@@ -12,7 +12,7 @@ class PdfDownloadsAdmin(admin.ModelAdmin):
 admin.site.register(PdfDownload,PdfDownloadsAdmin)
 admin.site.register(Payment)
 
-class PlayerInline(admin.StackedInline):
+class PlayerInline(admin.TabularInline):
     model = Player
 
 class PaymentInline(admin.TabularInline):

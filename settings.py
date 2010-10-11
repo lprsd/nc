@@ -87,7 +87,8 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'nutils',
     'reg',
-    'django_extensions'
+    'django_extensions',
+    'south'
 )
 
 from local_settings import *
