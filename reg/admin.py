@@ -41,9 +41,9 @@ class PlayerInline(admin.TabularInline):
     template = 'stacked.html'
     #show_url = True
     fieldsets = (
-            ('Basic', {'fields': ('name', 'photo', 'dob', 'email')}),
-            ('Contact', {'fields': ('address', 'mobile_phone', 'land_phone')}),
-            ('More', {'fields': ('emergency_contact', 'receive_updates')})
+            ('', {'fields': ('name', 'photo', 'dob', 'email')}),
+            ('', {'fields': ('address', 'mobile_phone', 'land_phone')}),
+            ('', {'fields': ('emergency_contact', 'receive_updates')})
         )
     
 class PaymentInline(admin.TabularInline):
