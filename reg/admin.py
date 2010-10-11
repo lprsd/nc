@@ -43,9 +43,8 @@ class PlayerInline(admin.TabularInline):
     #show_url = True
     fieldsets = (
             ('', {'fields': ('name', 'photo', 'dob', 'email')}),
-            ('', {'fields': ('address', 'mobile_phone', 'land_phone')}),
-            ('', {'fields': ('city','pincode')}),
-            ('', {'fields': ('emergency_contact',)}),
+            ('', {'fields': ('address','city','pincode')}),
+            ('', {'fields': ( 'mobile_phone', 'land_phone','emergency_contact')}),
             ('', {'fields': ('receive_updates',)}),
         )
     
