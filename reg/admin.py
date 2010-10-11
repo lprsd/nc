@@ -15,6 +15,7 @@ class PdfDownloadsAdmin(admin.ModelAdmin):
     
 admin.site.register(PdfDownload,PdfDownloadsAdmin)
 admin.site.register(Payment)
+admin.site.register(Player)
 
 from nutils.debug import ipython
 
@@ -37,7 +38,13 @@ class PlayerInline(admin.TabularInline):
     model = Player
     form = PlayerAdminForm
     formfield_overrides = { models.ImageField: {'widget': ImageWidget}}
-    #template = 'admin_inline.html'
+    template = 'stacked.html'
+    #show_url = True
+    fieldsets = (
+            ('Basic', {'fields': ('name', 'photo', 'dob', 'email')}),
+            ('Contact', {'fields': ('address', 'mobile_phone', 'land_phone')}),
+            ('More', {'fields': ('emergency_contact', 'receive_updates')})
+        )
     
 class PaymentInline(admin.TabularInline):
     model = Payment
