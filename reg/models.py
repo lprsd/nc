@@ -100,12 +100,15 @@ class PdfDownload(models.Model):
 
 status = ((1,'Approved'),
           (2,'Rejected'),
+          (3,'Pending'),
           )
 
 class Team(models.Model):
     name = models.CharField(max_length=127,verbose_name='Team Name')
     address = models.CharField(max_length=127)
     address2 = models.CharField(max_length=127,blank=True,null=True)
+    city = models.CharField(max_length=50)
+    pincode = models.IntegerField()
     phone = models.CharField(max_length=127,blank=True,null=True)
     email = models.EmailField(max_length=127,blank=True,null=True)
     store = models.CharField(choices=stores,max_length=10)
@@ -123,7 +126,9 @@ class Team(models.Model):
     payment_done = models.BooleanField(default=False)
     payment_detail = models.TextField()
     
-    status = models.PositiveSmallIntegerField(choices=status,blank=True,null=True)
+    status = models.PositiveSmallIntegerField(choices=status,default=3)
+    
+    #team_status = models.ManyToManyField(TeamStatus)
     
     def players(self):
         return self.player_set.count()
@@ -240,7 +245,8 @@ class Player(models.Model):
     #orderid = models.CharField(max_length=32)
     
     #datetime = models.DateTimeField(auto_now_add=True)
-    
+    def __unicode__(self):
+        return "%s : %s" %(self.team.name,self.name)
     
 class Payment(models.Model):
     team = models.ForeignKey(Team,null=True,blank=True)

@@ -56,11 +56,14 @@ class PaymentInline(admin.TabularInline):
     )
     
     
+    
 class TeamAdmin(admin.ModelAdmin):
     list_display = ('name', 'datetime', 'nregnum', 'email', 'phone', 'store', 'payment_done', 'payment_detail', 'status', 'players')
     date_hierarchy = 'datetime'
     search_fields = ('nregnum','name','phone','email')
     readonly_fields = ('datetime','ip','modified','modified_user','nregnum')
+    #filter_horizontal = ('status',)
+    list_filter = ('status','city','store','payment_done')
     fieldsets = (
         (None, {
             'fields': ('name', 'nregnum', 'status')
