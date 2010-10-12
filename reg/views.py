@@ -131,7 +131,8 @@ def payment_done(request):
     team_hash = p['Order_Id'].split(":")[0]
     #idebug()
     p_model = Payment()
-    p_model.team = get_object_or_404(Team,nregnum=team_hash)
+    t = get_object_or_404(Team,nregnum=team_hash)
+    p_model.team = t
     storing_string = ''
     for k,v in p.items():
         storing_string= "%s : %s \n%s"%(k,v,storing_string)
@@ -151,6 +152,9 @@ def payment_done(request):
         
     is_success = p['AuthDesc'] == 'Y'
     if is_success:
+        t.payment_done = True
+        t.payment_detail = 'Online %s'%p_model.pk
+        t.save()
         return redirect('http://nikecup.in/index2.html')
     else:
         return redirect('/payment-fail/')
