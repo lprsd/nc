@@ -98,9 +98,9 @@ class PdfDownload(models.Model):
             self.datetime = datetime.now()
         super(PdfDownload,self).save(*args,**kwargs)
 
-status = ((1,'Approved'),
+status = ((0,'Pending'),
+          (1,'Approved'),
           (2,'Rejected'),
-          (3,'Pending'),
           )
 
 class Team(models.Model):
@@ -126,7 +126,7 @@ class Team(models.Model):
     payment_done = models.BooleanField(default=False)
     payment_detail = models.TextField()
     
-    status = models.PositiveSmallIntegerField(choices=status,default=3)
+    status = models.PositiveSmallIntegerField(choices=status,default=0)
     
     #team_status = models.ManyToManyField(TeamStatus)
     
