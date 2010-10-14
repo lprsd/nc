@@ -56,6 +56,8 @@ class NewTeamForm(forms.Form):
         team.email = pd['email']
         team.captain_name = pd['captain']
         team.store = pd['NikeStore']
+        team.city = pd['city']
+        team.pincode = pd['pincode']
         team.save(**kwargs)
         return team
     
