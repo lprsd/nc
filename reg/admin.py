@@ -58,7 +58,7 @@ class PaymentInline(admin.TabularInline):
     
     
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ('name', 'datetime', 'nregnum', 'email', 'phone', 'store', 'payment_done', 'payment_detail', 'status', 'players')
+    list_display = ('name', 'datetime', 'nregnum', 'email', 'phone', 'store', 'payment_done', 'payment_detail', 'status', 'city', 'players')
     date_hierarchy = 'datetime'
     search_fields = ('nregnum','name','phone','email')
     readonly_fields = ('datetime','ip','modified','modified_user','nregnum')
