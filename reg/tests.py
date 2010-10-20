@@ -17,6 +17,7 @@ class ConvenientTestCase(TestCase):
         data = kwargs.pop("data", None)
         return self.client.post(reverse(url_name, args=args, kwargs=kwargs), data)
 
+    
 
 response3 = {u'Amount': [u'5.00'],
              u'AuthDesc': [u'N'],
@@ -63,6 +64,9 @@ class SimpleTest(ConvenientTestCase):
         my_response = self.post('payment_done',data=response3)
         ipython()
         
+    def test_dup_team_name(self):
+        pass
+    
         
 __test__ = {"doctest": """
 Another way to test that 1 + 1 is equal to 2.
