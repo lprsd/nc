@@ -17,6 +17,7 @@ from reg.models import Team, PdfDownload
 from reg.forms import TeamForm, NewTeamForm
 import StringIO
 WorkingKey = 'rj2wyllcokw0svvv1f'
+from django.contrib.auth.decorators import login_required
 
 def register(request):
     form  = NewTeamForm(request.POST or None)
@@ -78,7 +79,6 @@ def download_slno_only(request):
 def paymentpk(request,pk):
     team = get_object_or_404(Team,pk=pk)
     return payment(request,team.nregnum)
-
 
 def payment(request,team_hash,payload_only=False):
     team = get_object_or_404(Team, nregnum=team_hash)
@@ -159,6 +159,25 @@ def payment_done(request):
     else:
         return redirect('/payment-fail/')
     
+
+@login_required
+def print_team(request,team_hash):
+    team = get_object_or_404(Team,nregnum=team_hash)
+    return render_to_response('print_team.html',
+                              {'print_dict':team.get_print_dict()},
+                              RequestContext(request))
+
     
+def download_excel(request,team_hash):
+    team = get_object_or_404(Team,nregnum=team_hash)
+    team_dict = team.get_print_dict()
+    response = HttpResponse(mimetype='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename=somefilename.xls'
+    import csv
+    writer = csv.writer(response)
     
+    for k,v in team_dict.items():
+        writer.writerow([k,v])
+    
+    return response
     

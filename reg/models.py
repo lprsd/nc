@@ -4,6 +4,7 @@ from datetime import datetime
 from django.conf import settings
 from django.core.mail import send_mail, EmailMessage
 from django.template.loader import render_to_string
+from django.core.urlresolvers import reverse
 # Create your models here.
 
 from reportlab.pdfgen import canvas
@@ -128,7 +129,14 @@ class Team(models.Model):
     
     status = models.PositiveSmallIntegerField(choices=status,default=0)
     
-    #team_status = models.ManyToManyField(TeamStatus)
+    print_fields = ['name','address','address2','city','pincode','phone','email','store','captain_name']
+    
+    def get_print_dict(self):
+        from django.utils.datastructures import SortedDict
+        s = SortedDict()
+        for el in self.print_fields:
+            s[el] = getattr(self,el)
+        return s
     
     def players(self):
         return self.player_set.count()
@@ -211,6 +219,26 @@ class Team(models.Model):
     
     def __unicode__(self):
         return self.name
+    
+    def print_team(self):
+        print_url = reverse('print_team',args=[self.nregnum,])
+        return '<a href="%s">Print</a>'%print_url
+    print_team.allow_tags=True
+    
+    def download_excel(self):
+        dexcel_url = reverse('download_excel',args=[self.nregnum,])
+        return '<a href="%s">Download as Excel</a>'%dexcel_url
+    download_excel.allow_tags=True
+   
+    #def send_approved_email(self):
+        #dexcel_url = reverse('download_excel',args=[self.nregnum,])
+        #return '<a href="%s">Download as Excel</a>'%dexcel_url
+    #send_approved_email.allow_tags=True
+    
+    #def send_rejected_email(self):
+        #dexcel_url = reverse('download_excel',args=[self.nregnum,])
+        #return '<a href="%s">Download as Excel</a>'%dexcel_url
+    #send_rejected_email.allow_tags=True
     
     def save(self,*args,**kwargs):
         if not self.nregnum:

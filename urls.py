@@ -9,6 +9,8 @@ urlpatterns = patterns('',
     # Example:
     # (r'^nikecup/', include('nikecup.foo.urls')),
 
+    url(r'admin/print/(?P<team_hash>\d+)/$','reg.views.print_team',name='print_team'),
+    url(r'admin/download-excel/(?P<team_hash>\d+)/$','reg.views.download_excel',name='download_excel'),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
     url(r'register/$','reg.views.register',name='register'),
