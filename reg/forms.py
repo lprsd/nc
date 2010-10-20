@@ -19,6 +19,13 @@ class NewTeamForm(forms.Form):
     email = forms.EmailField()
     NikeStore = forms.ChoiceField(choices=stores,widget=forms.RadioSelect,label='Preferred location', help_text='In the event of your team being selected, please select preferred location to collect team docket (select ONE only):')
     
+    def clean_TeamName(self):
+        tn = self.cleaned_data['TeamName']
+        tn_count = Team.objects.filter(name=tn).count()
+        if tn_count:
+            raise forms.ValidationError('This Team Name is already taken. Please choose another.')
+        return tn
+    
     def clean_pincode(self):
         p = self.cleaned_data['pincode']
         min_value=100000
