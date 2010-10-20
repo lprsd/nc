@@ -172,7 +172,7 @@ def download_excel(request,team_hash):
     team = get_object_or_404(Team,nregnum=team_hash)
     team_dict = team.get_print_dict()
     response = HttpResponse(mimetype='application/ms-excel')
-    response['Content-Disposition'] = 'attachment; filename=somefilename.xls'
+    response['Content-Disposition'] = 'attachment; filename=%s.xls'%team.nregnum
     import csv
     writer = csv.writer(response)
     
