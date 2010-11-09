@@ -5,7 +5,7 @@ TEMPLATE_DEBUG = DEBUG
 SERVE_MEDIA = True
 ADMINS = (
      ('Lakshman Prasad', 'lakshman@agiliq.com'),
-     ('Mesh', 'mesh@meshacdesigns.com'),
+     ('Mesh', 'mesh@meshachdesigns.com'),
 )
 
 import os
