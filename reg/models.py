@@ -129,7 +129,7 @@ class Team(models.Model):
     address = models.CharField(max_length=127)
     address2 = models.CharField(max_length=127,blank=True,null=True)
     city = models.CharField(max_length=50)
-    pincode = models.IntegerField()
+    pincode = models.IntegerField(default=12345)
     phone = models.CharField(max_length=127,blank=True,null=True)
     email = models.EmailField(max_length=127,blank=True,null=True)
     store = models.CharField(choices=stores,max_length=10)
