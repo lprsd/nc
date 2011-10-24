@@ -34,7 +34,7 @@ def register(request):
                               RequestContext(request))
 
 @csrf_exempt
-def register2(request):
+def register2(request,template_name='index_2011.html'):
     form  = Team2011Form(request.POST or None)
     if form.is_valid():
         print form.cleaned_data
@@ -50,6 +50,10 @@ def register2(request):
     return render_to_response('index_2011.html',
                               {'form':form},
                               RequestContext(request))
+
+def register_simple_2011(request):
+    return register2(request,template_name='test_reg_2011.html')
+    
 
 def registered(request,pk,asstring=False):
     team = get_object_or_404(Team,pk=pk)
