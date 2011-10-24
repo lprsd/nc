@@ -1,7 +1,7 @@
 # Create your views here.
 
 #import ho.pisa as pisa
-from IPython import embed
+#from IPython import embed
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.template import RequestContext
@@ -45,7 +45,7 @@ def register2(request):
         return redirect(payment,team.nregnum)
         #return redirect(download,pk=team.pk)
     elif form.is_bound:
-        embed()
+        #embed()
         pass
     return render_to_response('index_2011.html',
                               {'form':form},
