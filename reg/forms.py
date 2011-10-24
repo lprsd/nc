@@ -117,14 +117,14 @@ class Team2011Form(forms.Form):
     def save(self,**kwargs):
         pd = self.cleaned_data
         team = Team()
-        team.name = pd['TeamName']
+        team.name = pd['teamName']
         team.address = pd['address']
         team.address2 = pd['address2']
         team.phone = pd['phone']
         team.email = pd['email']
-        team.captain_name = pd['captain']
-        team.store = pd['NikeStore']
+        team.captain_name = pd['teamCaptain']
+        team.store = pd['location']
         team.city = pd['city']
-        team.pincode = pd['pincode']
+        #team.pincode = pd['pincode']
         team.save(**kwargs)
         return team
