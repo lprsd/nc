@@ -13,7 +13,7 @@ from reportlab.lib.units import mm
 
 import os
 
-pixel = 0.72 # point = 0.75* pixel
+pixel = 0.75 # point = 0.75* pixel
 MAX_Y_POINT_A4 = 841.88
 
 
@@ -32,8 +32,19 @@ page2_positions = {
     'address2': (30, 275),
     }
 
-dl_page2_positions = {
-    'phash': (59,57),    
+positions_2011_dl = {
+    'phash': (73,93),
+    }
+
+positions_2011 = {
+    'nregnum': (73,93),
+    'name': (88,235),
+    'captain_name': (402,235),
+    'phone': (131,253),
+    'email': (349,253),
+    'address': (97,270),
+    'city': (60, 286),
+    'pincode': (360,286)
     }
 
 file_names = {
@@ -41,7 +52,9 @@ file_names = {
     'dl_done': '%spdf_dl/NikeCup%s.pdf',
     'entered_raw': '%spdfs/pk%s.pdf',
     'entered_done': "%sfinalpdfs/NikeCup%s.pdf",
-    'main_pdf': "%srf2.pdf"
+    'main_pdf': "%srf2.pdf",
+    'mum_pdf': "%smum.pdf",
+    'del_pdf': "%sdel.pdf"
 }
 
 class PdfDownload(models.Model):
@@ -53,6 +66,10 @@ class PdfDownload(models.Model):
         self.merge_pdf()
         return (file_names['dl_done']%(settings.MEDIA_URL,self.phash))
 
+    def get_url(self,file_name='mum_pdf'):
+        self.merge_pdf(file_name=file_name)
+        return (file_names['dl_done']%(settings.MEDIA_URL,self.phash))
+
     
     def make_pdf(self):
         sign_file_name = file_names['dl_raw']%(settings.MEDIA_ROOT,self.pk)
@@ -60,23 +77,26 @@ class PdfDownload(models.Model):
         p.setFillColorRGB(0,0,0)
         FONT_SIZE = 9
         p.setFontSize(size=FONT_SIZE)
-        for att_name,(x_coord,y_coord) in dl_page2_positions.items():
+        for att_name,(x_coord,y_coord) in positions_2011_dl.items():
             att = str(getattr(self,att_name))
-            p.drawString(x_coord,y_coord+5,att)
+            p.drawString(x_coord,y_coord+20,att)
         p.showPage()
         p.save()
         #print sign_file_name
         return sign_file_name
     
-    def merge_pdf(self):
+    def merge_pdf(self,file_name='main_pdf'):
         from pyPdf import PdfFileReader,PdfFileWriter
                 
-        pdf_file = file_names['main_pdf']%settings.MEDIA_ROOT
+        pdf_file = file_names[file_name]%settings.MEDIA_ROOT
         pdf_obj = PdfFileReader(open(pdf_file))
         
         values_page = PdfFileReader(open(self.make_pdf())).getPage(0)
         
         mergepage = pdf_obj.pages[0]
+        mergepage.mergePage(values_page)
+        
+        mergepage = pdf_obj.pages[1]
         mergepage.mergePage(values_page)
         
         signed_pdf = PdfFileWriter()
@@ -144,24 +164,25 @@ class Team(models.Model):
     def create_page2_pdf(self):
         sign_file_name = "%spdfs/pk%s.pdf"%(settings.MEDIA_ROOT,self.id)
         file_exists = os.path.isfile(sign_file_name)
-        #if file_exists:
-            #os.remove(sign_file_name)
+        if file_exists:
+            os.remove(sign_file_name)
+            print 'Existing file removed'
         p = canvas.Canvas(sign_file_name,pagesize=A4,bottomup=0)
         p.setFillColorRGB(0,0,0)
         FONT_SIZE = 9
         p.setFontSize(size=FONT_SIZE)
-        for att_name,(x_coord,y_coord) in page2_positions.items():
+        for att_name,(x_coord,y_coord) in positions_2011.items():
             att = str(getattr(self,att_name))
-            p.drawString(x_coord,y_coord+5,att)
+            p.drawString(x_coord,y_coord+8,att)
         p.showPage()
         p.save()
         #print sign_file_name
         return sign_file_name
 
-    def merge_pages(self):
+    def merge_pages(self,pdf='mum_pdf'):
         from pyPdf import PdfFileReader,PdfFileWriter
         
-        pdf_file = "%srf2.pdf"%settings.MEDIA_ROOT
+        pdf_file = file_names[pdf]%settings.MEDIA_ROOT
         pdf_obj = PdfFileReader(open(pdf_file))
         
         ##This is a bug in pyPdf. It detects some files as encrypted, even if they are not. It can be circumvented by asking it to decrypt with an empty string.
@@ -172,7 +193,7 @@ class Team(models.Model):
         
         values_page = PdfFileReader(open(self.create_page2_pdf())).getPage(0)
         
-        mergepage = pdf_obj.pages[0]
+        mergepage = pdf_obj.pages[1]
         mergepage.mergePage(values_page)
         
         signed_pdf = PdfFileWriter()

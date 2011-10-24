@@ -1,7 +1,7 @@
 # Create your views here.
 
-import ho.pisa as pisa
-
+#import ho.pisa as pisa
+from IPython import embed
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.template import RequestContext
@@ -14,10 +14,11 @@ import time
 from django.conf import settings
 
 from reg.models import Team, PdfDownload
-from reg.forms import TeamForm, NewTeamForm
+from reg.forms import TeamForm, NewTeamForm, Team2011Form
 import StringIO
 WorkingKey = 'rj2wyllcokw0svvv1f'
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
 def register(request):
     form  = NewTeamForm(request.POST or None)
@@ -32,6 +33,24 @@ def register(request):
                               {'form':form},
                               RequestContext(request))
 
+@csrf_exempt
+def register2(request):
+    form  = Team2011Form(request.POST or None)
+    if form.is_valid():
+        print form.cleaned_data
+        team = form.save()
+        team.ip = request.META['REMOTE_ADDR']
+        team.save()
+        team.send_html_email()
+        return redirect(payment,team.nregnum)
+        #return redirect(download,pk=team.pk)
+    elif form.is_bound:
+        embed()
+        pass
+    return render_to_response('index_2011.html',
+                              {'form':form},
+                              RequestContext(request))
+
 def registered(request,pk,asstring=False):
     team = get_object_or_404(Team,pk=pk)
     #form = TeamForm(instance=team)
@@ -40,14 +59,14 @@ def registered(request,pk,asstring=False):
                 locals(),
                 RequestContext(request))
 
-def download(request,pk):
-    pdf_html = registered(request,pk,asstring=True)
-    myfile = StringIO.StringIO()
-    pisa.CreatePDF(pdf_html, myfile)
-    myfile.seek(0)
-    response =  HttpResponse(myfile, mimetype='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename=nikecup.pdf'
-    return response
+#def download(request,pk):
+    #pdf_html = registered(request,pk,asstring=True)
+    #myfile = StringIO.StringIO()
+    #pisa.CreatePDF(pdf_html, myfile)
+    #myfile.seek(0)
+    #response =  HttpResponse(myfile, mimetype='application/pdf')
+    #response['Content-Disposition'] = 'attachment; filename=nikecup.pdf'
+    #return response
 
 
 def page2(request,pk):
@@ -75,6 +94,12 @@ def download_slno_only(request):
     pd.ip_address = request.META['REMOTE_ADDR']
     pd.save()
     return redirect(pd.get_dl_url())
+
+def download_city(request,file_name):
+    pd = PdfDownload()
+    pd.ip_address = request.META['REMOTE_ADDR']
+    pd.save()
+    return redirect(pd.get_url(file_name))
 
 def paymentpk(request,pk):
     team = get_object_or_404(Team,pk=pk)

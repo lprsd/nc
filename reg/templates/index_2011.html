@@ -1,0 +1,178 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script type="text/javascript" src="http://www.nikecup.in/2011/standalone/registration/js/jquery-1.6.js"></script>
+<script type="text/javascript" src="http://www.nikecup.in/2011/standalone/registration/js/md-registration.js"></script>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Nike Cup | Registration</title>
+<link href="http://www.nikecup.in/2011/standalone/registration/css/registration.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="page-wrapper">
+<div id="page">
+
+ 	<div id="banner">
+    <div id="banar_image">
+	<img src="http://www.nikecup.in/2011/standalone/registration/images/Perimeter-board--stumps-.gif" style="width: 860px; height: 368px; " /></div>
+    </div> 
+    
+    <div id= "nikelogo">      
+    <div class="nikelogonest"></div>
+    <div class="nikelogotext" ></div>
+    </div>    
+    <div id="buttons">
+    <ul class="menu"><li class="first leaf"><a class="btn" id="btn" href="tournament-format">TOURNAMENT FORMAT </a></li>
+<li class="leaf"><a class="singleline active" id="btn" href="/"><br>REGISTRATION </a></li>
+<li class="leaf"><a class="singleline" id="btn" href="contact"><br>CONTACT US </a></li>
+<li class="leaf"><a class="singleline" id="btn" href="faq"><br>FAQ</a></li>
+<li class="leaf"><a class="singleline active" id="btn" href="/"><br>GALLERY </a></li>
+<li class="leaf"><a class="btn active" id="btn" href="/">TOURNAMENT SCHEDULES </a></li>
+<li class="last leaf"><a class="singleline active" id="btn" href="/"><br>VENUES &amp; MAP</a></li>
+</ul>
+    </div>
+    
+<!-- content -->
+<div id="register-subhead"><img src="http://www.nikecup.in/2011/standalone/registration/images/registration-subhead.gif" width="860" height="50" alt="Registration" /></div>
+<div id="gameformat">
+<div id="gameformat-subhead">
+  <img src="http://www.nikecup.in/2011/standalone/registration/images/game-format.gif" width="860" height="50" alt="Registration" /></div>
+  <div id="gameformat-text">
+  <li>Knock out stage followed by League Stage</li>
+<li>Tennis Ball Cricket Tournament </li>
+<li>Tournament open to Males between 15 – 22 years (15 years as on October 15, 2011, not older than 22 years as on February 28, 2012 )</li>
+<li>Eight (8) over match – 12 players per team (8 on field + 4 substitutes)</li>
+<li><h3>Registration fee - Rs. 500/- per team</h3></li>
+  </div></div>
+  
+  <div id="registrationClose"><img src="http://www.nikecup.in/2011/standalone/registration/images/regostration-close-small.gif" width="250" height="99" alt="Registration Closes on: December 15, 2011 " /></div>
+  
+  <div class="line"></div>
+  
+  
+  
+ <div id="steps-form-wraper">
+  <div id="steps-register">
+  <div id="steps-subhead">
+  <img src="http://www.nikecup.in/2011/standalone/registration/images/steps-to-register.gif" width="860" height="50" alt="Registration" /></div>
+<div id="step-content">
+<div class="step"><div class="step-title">Step-1</div><div class="step-text">
+Fill in your Team's Details. You can make payment through the following methods:<br /><br />
+Online ( Debit/Credit Card) OR Courier a DD in favour of "Wizcraft International Entertainment Pvt Ltd" to the following address <br />
+<h3>Delhi</h3>
+Wiz Kashif <br /><br />
+R-4 Ground Floor, Khirki Extension,<br />
+Malviya Nagar, Near Women's Polytechnic<br />
+New Delhi – 110017<br />
+
+<h3>Mumbai</h3>
+Wiz Ashok <br /><br />
+Wizcraft International Entertainment Pvt. Ltd<br />
+5th Floor, Satyadev Plaza, Fun Republic Rd<br />
+Andheri (W),<br />
+Mumbai- 400053<br /><br />
+OR<br /><br />
+Make Cash payments at selected Nike Outlets
+<!--End of step-1--></div></div>
+
+
+
+<div class="step"><div class="step-title">Step-2</div><div class="step-text">Remaining registration form will be emailed to you <!-- end of step -2--></div></div>
+<div class="step"><div class="step-title">Step-3</div><div class="step-text">Attach Supporting documents. You can Courier the Complete Registration Form to "Wizcraft International Entertainment Pvt Ltd " or drop off at Select Nike Outlets. On Submission of Registration Form, do remember to retain the Counter Foil <!-- end of step -3--></div></div>
+<div class="step"><div class="step-title">Step-4</div><div class="step-text">Within 5 working days you will receive an Acknowledgement Mail confirming your Teams Registration <!-- end of step-4--></div></div>
+
+<div class="download download-delhi"><a href="http://etegete.com/download-delhi">Download</a> <div class="download-text">Registration Forms for Delhi</div></div>
+<div class="download download-mumbai"><a href="http://etegete.com/download-mumbai">Download</a><div class="download-text"> Registration Forms for Mumbai</div></div>
+
+
+</div>
+  </div>
+<div id="formwraper">
+<div id="formtitle"><img src="http://www.nikecup.in/2011/standalone/registration/images/form-subhead.gif" width="860" height="50" alt="Please fill in complete details:" /></div>
+<div id="form-div">
+<!--http://etegete.com/register11/-->
+<form id="registration" action="/register11/" method="post">
+<div class="form-row city-div"><label>Plase select a city</label>
+<select id="city" name="city" size="1">
+<option selected="selected" value="false">- Please Select -</option>
+<option value="Delhi">Delhi</option>
+<option value="Mumbai">Mumbai</option>
+</select></div>
+<div class="form-row"><label>Team Name</label>{{form.teamName}}</div><div class="err-message"></div>
+<div class="form-row"><label>Team Captain (Main contact): </label>{{form.teamCaptain}}</div><div class="err-message"></div>
+<div class="form-row"><label>Phone number (mobile):</label>{{form.phone}}</div><div class="err-message"></div>
+<div class="form-row"><label>Email:</label>{{form.email}}</div><div class="err-message"></div>
+<div class="form-row"><label>Postal address: </label>{{form.address}}</div><div class="err-message"></div>
+<div class="form-row"></label>{{form.address2}}</div>
+<div class="form-row"><label>In the event of your team being selected, please select preferred location to collect team docket (select ONE only):</label></div>
+<div class="form-row"><select id="location-delhi" name="Location" size="1">
+	<option selected="selected">- Please Select -</option>
+  <option>Nike Store, South Extension 1</option>
+  <option>Nike Store, Khan Market</option>
+  <option>Nike Store, Connaught Place</option>
+  <option>Nike Store, Select City Walk Saket</option>
+  <option>Nike Store, Ambience Mall ( Gurgaon )</option>
+  <option>Nike Store, Pacific Mall</option>
+</select></div><div class="err-message"></div>
+<div class="form-row"><select id="location-mumbai" name="Location" size="1">
+<option selected="selected">- Please Select -</option>
+  <option>Nike Store, Nirmal Lifestyle, Mulund (W)</option>
+  <option>Nike Store, Linking Road</option>
+  <option>Nike Store, Phoenix Mills, Lower Parel</option>
+  <option>Nike Store, Colaba Causeway</option>
+  <option>Nike Store, Infinity Mall, Malad ( W )</option>
+</select></div><div class="err-message"></div>
+<input id="submit" name="submit" type="submit" value="Submit" />
+</form>
+</div>
+
+<!-- form wraper end-->
+</div></div>
+
+<div class="line"></div>
+
+<div id="terms">
+<div id="terms-title"><img src="http://www.nikecup.in/2011/standalone/registration/images/terms-subhead.gif" width="860" height="50" alt="Entry Guidelines and Regulations: " /></div>
+<div id="terms-text">
+<ol>
+<li>Form must be filled in block letters. Unsigned and incomplete entry forms will be rejected. All fields are mandatory. Forms with incorrect or insufficient information will not be considered.</li>
+
+<li>Entry form can also be downloaded from our website ( www.nikecup.in ). Photocopy of entry forms will also be accepted</li>
+
+<li>On submitting the registration form, the applicant will receive an email acknowledging receipt within 4 days of submission. Post evaluation of the registration form (which can take up to 5 working days), the applicant will receive an email confirming if the registration has been accepted.</li>
+
+<li>An applicant can register & participate with only one team. Teams must use one registration form, multiple entries will not be considered.</li>
+
+<li>All teams' participants will have to submit a copy of their original photo id (College Id, Passport, Driving License, Voter Id, etc.) and a copy of a document clearly showing date of birth and thereby evidencing proof of age (Passport, Driving License, Voter ID Card, College ID Card, School Leaving Certificate, School mark sheet, etc.) along with this Registration Form.</li>
+
+<li>Participants will have to produce their original photo ID card on game day.</li>
+
+<li>If the participant is less than 18 years of age, parental / guardian's approval is a must.</li>
+
+<li>Applicant and participant should affix their signatures, wherever indicated. In case the applicant is below 18 years of age then the parents/guardian need to give their consent and sign on the behalf of the applicant. The declaration annexed to this Registration Form shall be signed by each participant or parent/guardian, if applicable.</li>
+
+<li>The acceptance of this Registration Form, the right to participate in The Nike Cup (the "Event") and the rights & benefits available to the applicant through this Event shall be as determined by Nike India Private Limited ("Nike") at their sole discretion.  This Registration Form, the right to participate in the Event and the rights & benefits available to the applicant through this Event cannot be transferred to any other person under any circumstances and the applicant alone shall be entitled, upon acceptance of this Registration Form, to the rights and benefits arising here under.</li>
+
+<li>The captain of each team (acting on behalf of his team) must make a payment of an amount of INR 500 (Rupees Five Hundred) to Wizcraft (as defined below) at the time of submission of this Registration Form ("Registration Fee"). The Registration Fee may be paid in cash or by way of demand draft. No refund of such Registration Fee shall be made by Wizcraft once this Registration Form is accepted. In the event of this Registration Form being rejected by the Event Organizers (defined below), the Registration Fee shall be refunded (cheques only) by Wizcraft within a period being no later than 30 (thirty) days from the date of conclusion of registration. </li> 
+
+<li>Match schedules & venues once fixed are final, and are decided at sole discretion of the Event Organizers.</li>
+
+<li>The Event Organizers reserve the right to verify the participant's ID, age and other details provided in this Registration Form and have the authority to take appropriate action as deemed fit if found incorrect.</li>
+
+<li>The Event Organisers are authorized to conduct age determination test, like MRI, as a process of verification of age at any stage of the tournament.</li>
+<li>The Event Organizers reserve the absolute right at any time to add or alter any or all of the terms and conditions stated herein and the same shall be binding on all the participants. All decisions of the Event Organizers in relation to the Event and the rules and regulations governing the individual games shall be final and binding.</li>
+</ol>
+
+</div>
+<!-- end of terms -->
+</div>
+
+<div id="foot">© 2010 NIKE, INC. ALL RIGHTS RESERVED</div>
+<!-- page end -->    
+</div>
+</div>
+</body>
+</html>
