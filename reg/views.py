@@ -47,7 +47,7 @@ def register2(request,template_name='index_2011.html'):
     elif form.is_bound:
         #embed()
         pass
-    return render_to_response('index_2011.html',
+    return render_to_response(template_name,
                               {'form':form},
                               RequestContext(request))
 
