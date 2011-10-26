@@ -33,13 +33,19 @@ def register(request):
 
 @csrf_exempt
 def register2(request,template_name='index_2011.html'):
-    form  = Team2011Form(data=request.POST or None)
+    new_post = None
+    if request.method=='POST' and request.POST['Location'][1].find('Please Select'):
+        new_post = request.POST.copy()
+        print 'Modified POST data'
+        new_post[u'Location'] = request.POST.getlist('Location')[0]
+    form  = Team2011Form(data=new_post or request.POST or None)
     if form.is_valid():
         print form.cleaned_data
         team = form.save()
         team.ip = request.META['REMOTE_ADDR']
         team.save()
-        team.send_html_email()
+        pdf_file = 'del_pdf' if team.city == 'Delhi' else 'mum_pdf'
+        team.send_html_email(pdf_file=pdf_file)
         return redirect('http://www.nikecup.in/2011/standalone/registration/register-thankyou.html')
         #return redirect(download,pk=team.pk)
     return render_to_response(template_name,
