@@ -176,9 +176,9 @@ class Team(models.Model):
     def create_page2_pdf(self):
         sign_file_name = "%spdfs/pk%s.pdf"%(settings.MEDIA_ROOT,self.id)
         file_exists = os.path.isfile(sign_file_name)
-        if file_exists:
-            os.remove(sign_file_name)
-            print 'Existing file removed'
+        #if file_exists:
+            #os.remove(sign_file_name)
+            #print 'Existing file removed'
         p = canvas.Canvas(sign_file_name,pagesize=A4,bottomup=0)
         p.setFillColorRGB(0,0,0)
         FONT_SIZE = 9
@@ -239,14 +239,14 @@ class Team(models.Model):
         email.attach_file(self.merge_pages())
         return email.send()
         
-    def send_html_email(self):
+    def send_html_email(self,pdf_file='mum_pdf'):
         message = render_to_string('ack_mail.html',{'team':self})
         email = EmailMessage(subject='Nike Cricket Registration',
                              body=message,
                              from_email='noreply@nikecricket.in',
                              to=(self.email,))
         email.content_subtype = "html"  # Main content is now text/html
-        email.attach_file(self.merge_pages())
+        email.attach_file(self.merge_pages(pdf_file))
         return email.send()
         
     
