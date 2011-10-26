@@ -48,9 +48,6 @@ def register2(request,template_name='index_2011.html'):
         team.send_html_email(pdf_file=pdf_file)
         return redirect('http://www.nikecup.in/2011/standalone/registration/register-thankyou.html')
         #return redirect(download,pk=team.pk)
-    elif form.is_bound:
-        from IPython import embed
-        embed()
     return render_to_response(template_name,
                               {'form':form},
                               RequestContext(request))
