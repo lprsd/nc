@@ -34,7 +34,7 @@ def register(request):
 @csrf_exempt
 def register2(request,template_name='index_2011.html'):
     new_post = None
-    if request.method=='POST' and request.POST['Location'][1].find('Please Select'):
+    if request.method=='POST' and request.POST['Location'][1].find('Please Select') > -1:
         new_post = request.POST.copy()
         print 'Modified POST data'
         new_post[u'Location'] = request.POST.getlist('Location')[0]
