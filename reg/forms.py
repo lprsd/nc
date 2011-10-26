@@ -1,7 +1,6 @@
-from reg.models import Team, stores
+from reg.models import Team, stores, stores_11
 from django import forms
 from nutils.widgets import ReadOnlyWidget
-from nutils.debug import ipython
 
 class TeamForm(forms.ModelForm):
     class Meta:
@@ -74,11 +73,11 @@ class Team2011Form(forms.Form):
     teamCaptain = forms.CharField(max_length=50, label="Team Captain",widget=forms.TextInput(attrs={'class':'fieldss req name','size':40}))
     address = forms.CharField(max_length=50, label='Address',widget=forms.TextInput(attrs={'class':'fieldss req','size':40}))
     address2 = forms.CharField(max_length=50, label='', required=False,widget=forms.TextInput(attrs={'class':'fieldss','size':40}))
-    city = forms.CharField()
-    #pincode = forms.IntegerField()
+    city = forms.ChoiceField(choices=((None,'- Please Select -'),('Mumbai','Mumbai'),('Delhi','Delhi')),widget=forms.Select(attrs={'id':'city'}))
+    pincode = forms.IntegerField(widget=forms.TextInput(attrs={'class':'fieldss','size':40}))
     phone = forms.IntegerField(label='Phone Number', widget=forms.TextInput(attrs={'class':'fieldss req name','size':40}),help_text='Enter 10 digit mobile number without spaces')
     email = forms.EmailField(widget=forms.TextInput(attrs={'class':'fieldss req name','size':40}))
-    location = forms.ChoiceField(choices=stores,widget=forms.RadioSelect)
+    Location = forms.ChoiceField(choices=stores_11,widget=forms.RadioSelect)
 
     def clean_TeamName(self):
         tn = self.cleaned_data['TeamName']
@@ -95,16 +94,16 @@ class Team2011Form(forms.Form):
             return p
         raise forms.ValidationError('This Pincode is invalid')
         
-    def clean_phone(self):
-        p = self.cleaned_data['phone']
-        min_value=8000000000
-        max_value=9999999999
-        if not min_value < p < max_value:
-            raise forms.ValidationError('This is not a valid mobile phone number')
-        phone_num = Team.objects.filter(phone=p).count()
-        if phone_num:
-            raise forms.ValidationError('There is a nikecup team registered already, with this phone number.')
-        return p
+    #def clean_phone(self):
+        #p = self.cleaned_data['phone']
+        #min_value=8000000000
+        #max_value=9999999999
+        #if not min_value < p < max_value:
+            #raise forms.ValidationError('This is not a valid mobile phone number')
+        #phone_num = Team.objects.filter(phone=p).count()
+        #if phone_num:
+            #raise forms.ValidationError('There is a nikecup team registered already, with this phone number.')
+        #return p
 
     
     def clean_email(self):
@@ -123,8 +122,8 @@ class Team2011Form(forms.Form):
         team.phone = pd['phone']
         team.email = pd['email']
         team.captain_name = pd['teamCaptain']
-        team.store = pd['location']
+        team.store = pd['Location']
         team.city = pd['city']
-        #team.pincode = pd['pincode']
+        team.pincode = pd['pincode']
         team.save(**kwargs)
         return team

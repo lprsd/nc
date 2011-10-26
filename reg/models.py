@@ -22,6 +22,18 @@ stores = (('LP', 'Nike store, Lower Parel'),
           ('MU', 'Nike store, Mulund (W)'),
           ('WO', 'Nike store, Worli'))
 
+stores_11 =   [('se', 'Nike Store, South Extension 1'),
+               ('km', 'Nike Store, Khan Market'),
+               ('cp', 'Nike Store, Connaught Place'),
+               ('ww', 'Nike Store, Select City Walk Saket'),
+               ('am', 'Nike Store, Ambience Mall ( Gurgaon )'),
+               ('pm', 'Nike Store, Pacific Mall'),
+               ('nl', 'Nike Store, Nirmal Lifestyle, Mulund (W)'),
+               ('lr', 'Nike Store, Linking Road'),
+               ('lp', 'Nike Store, Phoenix Mills, Lower Parel'),
+               ('cc', 'Nike Store, Colaba Causeway'),
+               ('im', 'Nike Store, Infinity Mall, Malad ( W )')]
+
 page2_positions = {
     'nregnum': (59,57),
     'name': (75,215),

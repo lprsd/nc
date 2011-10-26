@@ -95,35 +95,40 @@ Make Cash payments at selected Nike Outlets
 <div id="form-div">
 <!--http://etegete.com/register11/-->
 <form id="registration" action="/register11/" method="post">
+<div class="err-message">
+{{ form.non_field_errors }}
+</div>
+<div class="err-message">
 <div class="form-row city-div"><label>Plase select a city</label>
-<select id="city" name="city" size="1">
-<option selected="selected" value="false">- Please Select -</option>
-<option value="Delhi">Delhi</option>
-<option value="Mumbai">Mumbai</option>
-</select></div>
-<div class="form-row"><label>Team Name</label>{{form.teamName}}</div><div class="err-message"></div>
-<div class="form-row"><label>Team Captain (Main contact): </label>{{form.teamCaptain}}</div><div class="err-message"></div>
-<div class="form-row"><label>Phone number (mobile):</label>{{form.phone}}</div><div class="err-message"></div>
-<div class="form-row"><label>Email:</label>{{form.email}}</div><div class="err-message"></div>
-<div class="form-row"><label>Postal address: </label>{{form.address}}</div><div class="err-message"></div>
+{{form.city}}
+</div>
+<div class="err-message">{{form.teamName.errors}}</div>
+<div class="form-row"><label>Team Name</label>{{form.teamName}}</div><div class="err-message">{{form.teamName.errors}}</div>
+<div class="form-row"><label>Team Captain (Main contact): </label>{{form.teamCaptain}}</div><div class="err-message">{{form.teamCaptain.errors}}</div>
+<div class="form-row"><label>Phone number (mobile):</label>{{form.phone}}</div><div class="err-message">{{form.phone.errors}}</div>
+<div class="form-row"><label>Email:</label>{{form.email}}</div><div class="err-message">{{form.email.errors}}</div>
+<div class="form-row"><label>Postal address: </label>{{form.address}}</div><div class="err-message">{{form.address.errors}}</div>
 <div class="form-row"></label>{{form.address2}}</div>
+<div class="form-row"><label>Pin Code: </label>{{form.pincode}}</div><div class="err-message">{{form.pincode.errors}}</div>
 <div class="form-row"><label>In the event of your team being selected, please select preferred location to collect team docket (select ONE only):</label></div>
-<div class="form-row"><select id="location-delhi" name="Location" size="1">
-	<option selected="selected">- Please Select -</option>
-  <option>Nike Store, South Extension 1</option>
-  <option>Nike Store, Khan Market</option>
-  <option>Nike Store, Connaught Place</option>
-  <option>Nike Store, Select City Walk Saket</option>
-  <option>Nike Store, Ambience Mall ( Gurgaon )</option>
-  <option>Nike Store, Pacific Mall</option>
-</select></div><div class="err-message"></div>
+<div class="form-row">
+<div class="err-message">{{form.location.errors}}</div>
+<select id="location-delhi" name="Location" size="1">
+ <option selected="selected">- Please Select -</option>
+  <option value="se">Nike Store, South Extension 1</option>
+  <option value="km">Nike Store, Khan Market</option>
+  <option value="cp">Nike Store, Connaught Place</option>
+  <option value="ww">Nike Store, Select City Walk Saket</option>
+  <option value="am">Nike Store, Ambience Mall ( Gurgaon )</option>
+  <option value="pm">Nike Store, Pacific Mall</option>
+</select></div>
 <div class="form-row"><select id="location-mumbai" name="Location" size="1">
 <option selected="selected">- Please Select -</option>
-  <option>Nike Store, Nirmal Lifestyle, Mulund (W)</option>
-  <option>Nike Store, Linking Road</option>
-  <option>Nike Store, Phoenix Mills, Lower Parel</option>
-  <option>Nike Store, Colaba Causeway</option>
-  <option>Nike Store, Infinity Mall, Malad ( W )</option>
+  <option value="nl">Nike Store, Nirmal Lifestyle, Mulund (W)</option>
+  <option value="lr">Nike Store, Linking Road</option>
+  <option value="lp">Nike Store, Phoenix Mills, Lower Parel</option>
+  <option value="cc">Nike Store, Colaba Causeway</option>
+  <option value="im">Nike Store, Infinity Mall, Malad ( W )</option>
 </select></div><div class="err-message"></div>
 <input id="submit" name="submit" type="submit" value="Submit" />
 </form>
