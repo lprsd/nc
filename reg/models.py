@@ -240,7 +240,7 @@ class Team(models.Model):
         return email.send()
         
     def send_html_email(self,pdf_file='mum_pdf'):
-        message = render_to_string('ack_mail.html',{'team':self})
+        message = render_to_string('ack_2011.html',{'team':self})
         email = EmailMessage(subject='Nike Cricket Registration',
                              body=message,
                              from_email='noreply@nikecricket.in',
