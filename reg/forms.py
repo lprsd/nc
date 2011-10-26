@@ -94,16 +94,16 @@ class Team2011Form(forms.Form):
             return p
         raise forms.ValidationError('This Pincode is invalid')
         
-    #def clean_phone(self):
-        #p = self.cleaned_data['phone']
-        #min_value=8000000000
-        #max_value=9999999999
-        #if not min_value < p < max_value:
-            #raise forms.ValidationError('This is not a valid mobile phone number')
-        #phone_num = Team.objects.filter(phone=p).count()
-        #if phone_num:
-            #raise forms.ValidationError('There is a nikecup team registered already, with this phone number.')
-        #return p
+    def clean_phone(self):
+        p = self.cleaned_data['phone']
+        min_value=7000000000
+        max_value=9999999999
+        if not min_value < p < max_value:
+            raise forms.ValidationError('This is not a valid mobile phone number')
+        phone_num = Team.objects.filter(phone=p).count()
+        if phone_num:
+            raise forms.ValidationError('There is a nikecup team registered already, with this phone number.')
+        return p
 
     
     def clean_email(self):

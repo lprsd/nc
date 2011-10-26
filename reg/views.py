@@ -1,7 +1,5 @@
 # Create your views here.
 
-#import ho.pisa as pisa
-#from IPython import embed
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.template import RequestContext
@@ -35,18 +33,15 @@ def register(request):
 
 @csrf_exempt
 def register2(request,template_name='index_2011.html'):
-    form  = Team2011Form(request.POST or None)
+    form  = Team2011Form(data=request.POST or None)
     if form.is_valid():
         print form.cleaned_data
         team = form.save()
         team.ip = request.META['REMOTE_ADDR']
         team.save()
         team.send_html_email()
-        return redirect(payment,team.nregnum)
+        return redirect('http://www.nikecup.in/2011/standalone/registration/register-thankyou.html')
         #return redirect(download,pk=team.pk)
-    elif form.is_bound:
-        #embed()
-        pass
     return render_to_response(template_name,
                               {'form':form},
                               RequestContext(request))
