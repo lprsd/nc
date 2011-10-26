@@ -34,7 +34,7 @@ def register(request):
 @csrf_exempt
 def register2(request,template_name='index_2011.html'):
     new_post = None
-    if request.method=='POST' and request.POST['Location'][1].find('Please Select') > -1:
+    if request.method=='POST' and request.POST['city'] == 'Delhi':
         new_post = request.POST.copy()
         print 'Modified POST data'
         new_post[u'Location'] = request.POST.getlist('Location')[0]
@@ -48,6 +48,9 @@ def register2(request,template_name='index_2011.html'):
         team.send_html_email(pdf_file=pdf_file)
         return redirect('http://www.nikecup.in/2011/standalone/registration/register-thankyou.html')
         #return redirect(download,pk=team.pk)
+    elif form.is_bound:
+        from IPython import embed
+        embed()
     return render_to_response(template_name,
                               {'form':form},
                               RequestContext(request))
