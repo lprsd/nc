@@ -98,18 +98,31 @@ Make Cash payments at selected Nike Outlets
 <div class="err-message">
 {{ form.non_field_errors }}
 </div>
-<div class="err-message">
+<div class="err-message">{{form.city.errors}}</div>
 <div class="form-row city-div"><label>Plase select a city</label>
 {{form.city}}
 </div>
+
 <div class="err-message">{{form.teamName.errors}}</div>
-<div class="form-row"><label>Team Name</label>{{form.teamName}}</div><div class="err-message">{{form.teamName.errors}}</div>
-<div class="form-row"><label>Team Captain (Main contact): </label>{{form.teamCaptain}}</div><div class="err-message">{{form.teamCaptain.errors}}</div>
-<div class="form-row"><label>Phone number (mobile):</label>{{form.phone}}</div><div class="err-message">{{form.phone.errors}}</div>
-<div class="form-row"><label>Email:</label>{{form.email}}</div><div class="err-message">{{form.email.errors}}</div>
-<div class="form-row"><label>Postal address: </label>{{form.address}}</div><div class="err-message">{{form.address.errors}}</div>
+<div class="form-row"><label>Team Name</label>{{form.teamName}}</div>
+
+<div class="err-message">{{form.teamCaptain.errors}}</div>
+<div class="form-row"><label>Team Captain (Main contact): </label>{{form.teamCaptain}}</div>
+
+<div class="err-message">{{form.phone.errors}}</div>
+<div class="form-row"><label>Phone number (mobile):</label>{{form.phone}}</div>
+
+<div class="err-message">{{form.email.errors}}</div>
+<div class="form-row"><label>Email:</label>{{form.email}}</div>
+
+<div class="err-message">{{form.address.errors}}</div>
+<div class="form-row"><label>Postal address: </label>{{form.address}}</div>
+
 <div class="form-row"></label>{{form.address2}}</div>
-<div class="form-row"><label>Pin Code: </label>{{form.pincode}}</div><div class="err-message">{{form.pincode.errors}}</div>
+
+<div class="err-message">{{form.pincode.errors}}</div>
+<div class="form-row"><label>Pin Code: </label>{{form.pincode}}</div>
+
 <div class="form-row"><label>In the event of your team being selected, please select preferred location to collect team docket (select ONE only):</label></div>
 <div class="form-row">
 <div class="err-message">{{form.location.errors}}</div>
