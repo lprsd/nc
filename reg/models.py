@@ -180,10 +180,10 @@ class Team(models.Model):
     
     def create_page2_pdf(self):
         sign_file_name = "%spdfs/pk%s.pdf"%(settings.MEDIA_ROOT,self.id)
-        file_exists = os.path.isfile(sign_file_name)
-        if file_exists:
-            os.remove(sign_file_name)
-            print 'Existing file removed'
+        #file_exists = os.path.isfile(sign_file_name)
+        #if file_exists:
+            #os.remove(sign_file_name)
+            #print 'Existing file removed'
         p = canvas.Canvas(sign_file_name,pagesize=A4,bottomup=0)
         p.setFillColorRGB(0,0,0)
         FONT_SIZE = 9
