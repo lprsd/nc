@@ -77,7 +77,7 @@ class Team2011Form(forms.Form):
     pincode = forms.IntegerField(widget=forms.TextInput(attrs={'class':'fieldss','size':40}))
     phone = forms.IntegerField(label='Phone Number', widget=forms.TextInput(attrs={'class':'fieldss req name','size':40}),help_text='Enter 10 digit mobile number without spaces')
     email = forms.EmailField(widget=forms.TextInput(attrs={'class':'fieldss req name','size':40}))
-    Location = forms.ChoiceField(choices=stores_11,widget=forms.RadioSelect)
+    Location = forms.ChoiceField(choices=stores_11)
 
     def clean_TeamName(self):
         tn = self.cleaned_data['TeamName']

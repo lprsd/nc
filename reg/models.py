@@ -56,7 +56,8 @@ positions_2011 = {
     'email': (349,253),
     'address': (97,270),
     'city': (60, 286),
-    'pincode': (360,286)
+    'pincode': (360,286),
+    'store_name': (43,326),
     }
 
 file_names = {
@@ -163,6 +164,10 @@ class Team(models.Model):
     
     print_fields = ['name','address','address2','city','pincode','phone','email','store','captain_name']
     
+    @property
+    def store_name(self):
+        return dict(stores_11).get(self.store.lower(),'Not Provided')
+    
     def get_print_dict(self):
         from django.utils.datastructures import SortedDict
         s = SortedDict()
@@ -176,9 +181,9 @@ class Team(models.Model):
     def create_page2_pdf(self):
         sign_file_name = "%spdfs/pk%s.pdf"%(settings.MEDIA_ROOT,self.id)
         file_exists = os.path.isfile(sign_file_name)
-        #if file_exists:
-            #os.remove(sign_file_name)
-            #print 'Existing file removed'
+        if file_exists:
+            os.remove(sign_file_name)
+            print 'Existing file removed'
         p = canvas.Canvas(sign_file_name,pagesize=A4,bottomup=0)
         p.setFillColorRGB(0,0,0)
         FONT_SIZE = 9
@@ -187,8 +192,11 @@ class Team(models.Model):
             att = str(getattr(self,att_name))
             p.drawString(x_coord,y_coord+8,att)
         p.showPage()
+        p.drawString(688,458+8,str(self.nregnum))
+        p.showPage()
+        
         p.save()
-        #print sign_file_name
+        print sign_file_name
         return sign_file_name
 
     def merge_pages(self,pdf='mum_pdf'):
@@ -203,10 +211,15 @@ class Team(models.Model):
         
 
         
-        values_page = PdfFileReader(open(self.create_page2_pdf())).getPage(0)
+        values_pdf = PdfFileReader(open(self.create_page2_pdf()))
+        values_page = values_pdf.getPage(0)
+        sl_page = values_pdf.getPage(1)
         
         mergepage = pdf_obj.pages[1]
         mergepage.mergePage(values_page)
+        
+        mergepage2 = pdf_obj.pages[3]
+        mergepage2.mergePage(sl_page)
         
         signed_pdf = PdfFileWriter()
         for page in pdf_obj.pages:
