@@ -92,7 +92,9 @@ class PdfDownload(models.Model):
         p.setFontSize(size=FONT_SIZE)
         for att_name,(x_coord,y_coord) in positions_2011_dl.items():
             att = str(getattr(self,att_name))
-            p.drawString(x_coord,y_coord+20,att)
+            p.drawString(x_coord,y_coord+8,att)
+        p.showPage()
+        p.drawString(688,458+8,str(self.phash))
         p.showPage()
         p.save()
         #print sign_file_name
@@ -104,13 +106,18 @@ class PdfDownload(models.Model):
         pdf_file = file_names[file_name]%settings.MEDIA_ROOT
         pdf_obj = PdfFileReader(open(pdf_file))
         
-        values_page = PdfFileReader(open(self.make_pdf())).getPage(0)
+        vPdf = PdfFileReader(open(self.make_pdf()))
+        values_page = vPdf.getPage(0)
+        vp2 = vPdf.getPage(1)
         
         mergepage = pdf_obj.pages[0]
         mergepage.mergePage(values_page)
         
         mergepage = pdf_obj.pages[1]
         mergepage.mergePage(values_page)
+        
+        mergepage = pdf_obj.pages[2]
+        mergepage.mergePage(vp2)
         
         signed_pdf = PdfFileWriter()
         for page in pdf_obj.pages:
