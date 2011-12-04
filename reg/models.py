@@ -34,6 +34,8 @@ stores_11 =   [('se', 'Nike Store, South Extension 1'),
                ('cc', 'Nike Store, Colaba Causeway'),
                ('im', 'Nike Store, Infinity Mall, Malad ( W )')]
 
+stores_11.extend(stores)
+
 page2_positions = {
     'nregnum': (59,57),
     'name': (75,215),
@@ -152,7 +154,7 @@ class Team(models.Model):
     pincode = models.IntegerField(default=12345)
     phone = models.CharField(max_length=127,blank=True,null=True)
     email = models.EmailField(max_length=127,blank=True,null=True)
-    store = models.CharField(choices=stores,max_length=10)
+    store = models.CharField(choices=stores_11,max_length=10)
     captain_name = models.CharField(max_length=127,blank=True,null=True)
     
     nregnum = models.IntegerField(verbose_name="Nikecup Reg. No.")
