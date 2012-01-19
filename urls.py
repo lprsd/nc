@@ -3,19 +3,21 @@ from django.conf.urls.defaults import *
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
-from django.views.generic.simple import direct_to_template
+from django.views.generic.simple import direct_to_template, redirect_to
 
 urlpatterns = patterns('',
     # Example:
     # (r'^nikecup/', include('nikecup.foo.urls')),
 
-    url(r'admin/print/(?P<team_hash>\d+)/$','reg.views.print_team',name='print_team'),
-    url(r'admin/download-excel/(?P<team_hash>\d+)/$','reg.views.download_excel',name='download_excel'),
-    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    (r'^admin/', include(admin.site.urls)),
+    url(r'backyard/print/(?P<team_hash>\d+)/$','reg.views.print_team',name='print_team'),
+    url(r'backyard/download-excel/(?P<team_hash>\d+)/$','reg.views.download_excel',name='download_excel'),
+    (r'^backyard/doc/', include('django.contrib.admindocs.urls')),
+    (r'^backyard/', include(admin.site.urls)),
+    (r'^admin/', redirect_to,{'url':'http://www.nikecup.in/2011/standalone/registration/register-thankyou.html'}),
     url(r'register/$','reg.views.register',name='register'),
     #url(r'registration/$','reg.views.register2',name='register_2011'),
     url(r'register11/','reg.views.register2',name='register_2011'),
+    url(r'submit_form/','reg.views.register3',name='register_2011f'),
     url(r'register11-simple/$','reg.views.register_simple_2011',name='register_2011-simple'),
     #url(r'registered/(?P<pk>\d+)/$','reg.views.registered',name='registered'),
     #url(r'download/(?P<pk>\d+)/$','reg.views.download',name='download_pdf'),

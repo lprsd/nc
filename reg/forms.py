@@ -127,3 +127,7 @@ class Team2011Form(forms.Form):
         team.pincode = pd['pincode']
         team.save(**kwargs)
         return team
+
+class Team2011Form2(forms.Form):
+    regno = forms.CharField()
+    Completed_scanned_file = forms.FileField()

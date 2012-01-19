@@ -12,7 +12,7 @@ import time
 from django.conf import settings
 
 from reg.models import Team, PdfDownload
-from reg.forms import TeamForm, NewTeamForm, Team2011Form
+from reg.forms import TeamForm, NewTeamForm, Team2011Form, Team2011Form2
 import StringIO
 WorkingKey = 'rj2wyllcokw0svvv1f'
 from django.contrib.auth.decorators import login_required
@@ -51,6 +51,31 @@ def register2(request,template_name='index_2011.html'):
     return render_to_response(template_name,
                               {'form':form},
                               RequestContext(request))
+
+def handle_uploaded_file(f):
+    destination = open('/tmp/aaa/', 'wb+')
+    for chunk in f.chunks():
+        destination.write(chunk)
+    destination.close()
+
+@csrf_exempt
+def register3(request,template_name='index_20112.html'):
+    if request.method == 'POST':
+        form = Team2011Form2(request.POST,request.FILES)
+        from IPython import embed
+        embed()
+        if form.is_valid():
+            handle_uploaded_file(request.FILES['file'])
+            return redirect('http://www.nikecup.in/2011/standalone/registration/register-thankyou.html')
+        #return redirect(download,pk=team.pk)
+    else:
+        form = Team2011Form2()
+    return render_to_response(template_name,
+                              {'form':form},
+                              RequestContext(request))
+
+
+
 
 def register_simple_2011(request):
     return register2(request,template_name='test_reg_2011.html')
